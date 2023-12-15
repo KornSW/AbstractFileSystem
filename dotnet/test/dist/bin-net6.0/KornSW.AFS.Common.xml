@@ -1,0 +1,439 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KornSW.AFS.Common</name>
+    </assembly>
+    <members>
+        <member name="T:Security.AccessTokenHandling.AccessTokenValidator.IntrospectorSelectorMethod">
+            <summary>
+            method to retrieve the IAccessTokenIntrospector
+            that should be used to validate the token. NOTE: this method will be called for EACH request,
+            so that you MUST NOT provide a NEW instance on each call (should be some kind of singleton)!
+            The method can also return null, which represents the semantic, that the token issuer (=origin) is unknown/not trusted.
+            </summary>
+            <param name="calledMethod">the api method, which the client is trying to invoke</param>
+            <param name="callingMachine">the client machine (name or IP-address), which has initiated the service-request</param>
+            <param name="tryReadJwtIssuerMethod">
+            Can be called to retrieve the issuer from a JWT.
+            Note that this method should only be called if the tokens are in JWT format AND this information
+            is really required for selecting the correct introspector!
+            If the token is not a JWT, null will be returned!
+            </param>
+            <returns>
+            null, if the token issuer (=origin) is unknown/not trusted</returns>
+        </member>
+        <member name="T:Security.AccessTokenHandling.AccessTokenValidator.VisitOrModifyPermittedScopesMethod">
+            <summary>
+            </summary>
+            <param name="subject">the subject string as delivered by the introspector (content of the 'sub'-claim)</param>
+            <param name="permittedScopes">scopes to extend/modify/clear</param>
+        </member>
+        <member name="F:Security.AccessTokenHandling.AccessTokenValidator.ValidationOutcome.AccessDeniedTokenInvalid">
+            <summary>
+            the introspector returned isActive=false, which can be caused by some of the following reasons:
+            1. the token could not be readed (corrupt or wrong technical format) /
+            2. the tokken signature is invalid /
+            3. the token is expired or has be revoked /
+            4. there are no privileges to the corresponding subject/issuer/audience to access this api anyway
+            </summary>
+        </member>
+        <member name="F:Security.AccessTokenHandling.AccessTokenValidator.ValidationOutcome.AccessDeniedTokenFromBadOrigin">
+            <summary>
+            the configured introspectorSelector (HOOK) returned null to indicate,
+            that the token issuer (=origin) is unknown/not trusted. 
+            </summary>
+        </member>
+        <member name="F:Security.AccessTokenHandling.AccessTokenValidator.ValidationOutcome.AccessDeniedTokenRequired">
+            <summary>
+            there was no token provided AND anonymous access was not configured (no anonymousSubjectName is set)
+            </summary>
+        </member>
+        <member name="F:Security.AccessTokenHandling.AccessTokenValidator.ValidationOutcome.AccessDeniedMissingPrivileges">
+            <summary>
+            one ore more of the requiredScopes are missing within the permittedScopes 
+            (comming from tokenintrospection and/or scopeHook)
+            NOTE: this is also affected by the configured apiPermissionPrefix
+            </summary>
+        </member>
+        <member name="M:Security.AccessTokenHandling.AccessTokenValidator.ConfigureTokenIntrospection(Security.AccessTokenHandling.IAccessTokenIntrospector,Security.AccessTokenHandling.AccessTokenValidator.VisitOrModifyPermittedScopesMethod,System.String,System.String,System.Int32,Security.AccessTokenHandling.AccessTokenValidator.AuditingHook)">
+            <summary>
+            Configures the IAccessTokenIntrospector which is used when the EvaluateBearerTokenAttribute
+            is evaluated for a method. The returned "scope"-Claim needs to match with ALL of the
+            "requiredApiPermissions" (passed to the EvaluateBearerTokenAttribute-Constructor)
+            </summary>
+            <param name="introspector">
+            IAccessTokenIntrospector that should be used to validate the token.
+            </param>
+            <param name="scopeEnumerationHook">Can be used to:
+            extend/modify/clear the scopes returned by the introspector before evaluation AND/OR
+            validate against subject black-/white-lists AND/OR
+            to distribute them for example to a MAC context.
+            </param>
+            <param name="anonymousSubjectName">
+            if set, tokens will become optional and the provided scopeHook will be
+            called in this case passing the anonymousSubjectName to it. The hook can
+            provide default scopes to that should be permitted fot the caller. 
+            </param>
+            <param name="apiPermissionPrefix">
+            a prefix for the "requiredScopes", passed to the TryValidateTokenAndEvaluateScopes-Method.
+            Example: TryValidateTokenAndEvaluateScopes(,,,{"UserAdministration"}) in combination with the apiPermissionPrefix "API:"
+            will require that the "scope"-claim of the token needs to contain the expression "API:UserAdministration"
+            </param>
+            <param name="introspectionResultCachingMinutes">
+            sets, how many minutes the introspection outcome should be cached before it will be re-evaluated
+            </param>
+            <param name="auditingHook">
+            a hook for request-auditing...
+            </param>
+        </member>
+        <member name="M:Security.AccessTokenHandling.AccessTokenValidator.ConfigureTokenIntrospection(Security.AccessTokenHandling.AccessTokenValidator.IntrospectorSelectorMethod,Security.AccessTokenHandling.AccessTokenValidator.VisitOrModifyPermittedScopesMethod,System.String,System.String,System.Int32,Security.AccessTokenHandling.AccessTokenValidator.AuditingHook)">
+            <summary>
+            Configures the IAccessTokenIntrospector which is used when the EvaluateBearerTokenAttribute
+            is evaluated for a method. The returned "scope"-Claim needs to match with ALL of the
+            "requiredApiPermissions" (passed to the EvaluateBearerTokenAttribute-Constructor)
+            </summary>
+            <param name="introspectorSelector">
+            method to retrieve the IAccessTokenIntrospector
+            that should be used to validate the token. NOTE: this method will be called for EACH request,
+            so that you MUST NOT provide a NEW instance on each call (should be some kind of singleton)!
+            The method can also return null, which represents the semantic, that the token issuer (=origin) is unknown/not trusted.
+            </param>
+            <param name="scopeEnumerationHook">Can be used to:
+            extend/modify/clear the scopes returned by the introspector before evaluation AND/OR
+            validate against subject black-/white-lists AND/OR
+            to distribute them for example to a MAC context.
+            </param>
+            <param name="anonymousSubjectName">
+            if set, tokens will become optional and the provided scopeHook will be
+            called in this case passing the anonymousSubjectName to it. The hook can
+            provide default scopes to that should be permitted fot the caller. 
+            </param>
+            <param name="apiPermissionPrefix">
+            a prefix for the "requiredScopes", passed to the TryValidateTokenAndEvaluateScopes-Method.
+            Example: TryValidateTokenAndEvaluateScopes(,,,{"UserAdministration"}) in combination with the apiPermissionPrefix "API:"
+            will require that the "scope"-claim of the token needs to contain the expression "API:UserAdministration"
+            </param>
+            <param name="introspectionResultCachingMinutes">
+            sets, how many minutes the introspection outcome should be cached before it will be re-evaluated
+            </param>
+            <param name="auditingHook">
+            a hook for request-auditing...
+            </param> 
+        </member>
+        <member name="M:Security.AccessTokenHandling.AccessTokenValidator.TryValidateTokenAndEvaluateScopes(System.String,System.String,System.String,System.String[])">
+            <summary>
+            This method will:
+              analyze/introspect the token,
+              resolve the subject identity,
+              resolve the permitted scopes,
+              and optinally compare the permitted scope to the requiredScopes (if provided).
+            If configured, an internal cache for the outcome will be enabled.
+            NOTE: this method can only be called after 'AccessTokenValidator.ConfigureTokenIntrospection(...)
+            has been called before, otherwise it will throw an Exception!
+            </summary>
+            <param name="rawToken">
+            The recived token (or null, if no token was provided).
+            Make sure, that this method is called also if there was no Token, to support anonymous access (if configured)
+            </param>
+            <param name="callingMachine">the client machine (name or IP-address), which has initiated the service-request</param>
+            <param name="calledMethod">the api method, which the client is trying to invoke</param>
+            <param name="requiredApiPermissions">
+            OPTIONAL: all expressions, passed to this array,
+            are required to be present within the permittedScopes that are evaluated when introspecting the token.
+            If one is not present, the validation outcome will be negative (access should be denied in this case).
+            NOTE: related to the configured 'apiPermissionPrefix', the evaluated scopes from the token (but NOT the requiredApiPermissions)
+            are required to compliant with this (otherwise they will be ignored)
+            </param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Security.AccessTokenHandling.TokenValidationRulesetBasedValidator.SelectIntrospectorByJwtIssuer(System.String,System.String,System.Func{System.String})">
+            <summary>
+            (NOTE: can be wired-up with the AccessTokenValidator as IntrospectorSelectorMethod)
+            </summary>
+            <param name="calledMethod"></param>
+            <param name="callingMachine"></param>
+            <param name="tryReadJwtIssuerMethod"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Security.AccessTokenHandling.TokenValidationRulesetBasedValidator.ExtendPermittedScopesViaConfig(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            (NOTE: can be wired-up with the AccessTokenValidator as.ScopeEnumerationHookMethod)
+            </summary>
+            <param name="subject"></param>
+            <param name="permittedScopes"></param>
+        </member>
+        <member name="P:Security.AccessTokenHandling.IssuerProfileConfigurationEntry.IssuerName">
+            <summary>
+            Use '?' as name to declare a generic fallback profile!
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.SubjectProfileConfigurationEntry.SubjectName">
+            <summary>
+            Use '?' as name to declare a generic fallback profile!
+            </summary>
+        </member>
+        <member name="T:Security.AccessTokenHandling.OAuthTokenIntrospectionEndpointCaller">
+            <summary>
+            https://datatracker.ietf.org/doc/html/rfc7662
+            </summary>
+        </member>
+        <member name="M:Security.AccessTokenHandling.OAuthTokenIntrospectionEndpointCaller.IntrospectAccessToken(System.String,System.Boolean@,System.Collections.Generic.Dictionary{System.String,System.Object}@)">
+            <summary>
+            
+            </summary>
+            <param name="rawToken"></param>
+            <param name="isActive"></param>
+            <param name="claims">
+              possible, but OPTIONAL! claims are:
+              'scope', 'client_id' ,'username', 'token_type', 'exp', 'iat', 'nbf', 'sub', 'aud', 'iss', 'jti'
+            </param>
+        </member>
+        <member name="T:Security.AccessTokenHandling.LocalJwtIntrospector.JwtSignatureValidationDelegate">
+            <summary>
+            The retuned object can be a byte[] or a JWK stucture
+            </summary>
+            <param name="rawJwt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Security.AccessTokenHandling.OAuthServer.IOAuthService.TryAuthenticate(System.String,System.String,System.String,System.Boolean,System.String,System.String@,System.String@)">
+            <summary>
+            should return a sessionOtp
+            </summary>
+            <param name="apiClientId"></param>
+            <param name="login"></param>
+            <param name="password"> is empty when noPasswordNeeded</param>
+            <param name="noPasswordNeeded"> is true when windows pass-trough has already been processed</param>
+            <param name="clientProvidedState"></param>
+            <param name="sessionOtp"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Security.AccessTokenHandling.OAuthServer.OAuthTokenIntrospectionResult">
+            <summary>
+            as defined by https://www.rfc-editor.org/rfc/rfc7662 2.2
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.OAuthServer.OAuthTokenIntrospectionResult.active">
+            <summary>
+             REQUIRED. Boolean indicator of whether or not the presented token
+             is currently active. The specifics of a token's "active" state
+             will vary depending on the implementation of the authorization
+             server and the information it keeps about its tokens, but a "true"
+             value return for the "active" property will generally indicate
+             that a given token has been issued by this authorization server,
+             has not been revoked by the resource owner, and is within its
+             given time window of validity (e.g., after its issuance time and
+             before its expiration time)
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.OAuthServer.OAuthTokenIntrospectionResult.username">
+            <summary>
+             OPTIONAL. Human-readable identifier for the resource owner who authorized this token
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.OAuthServer.OAuthTokenIntrospectionResult.scope">
+            <summary>
+             OPTIONAL. A JSON string containing a space-separated list of
+             scopes associated with this token, in the format described in
+             Section 3.3 of OAuth 2.0 [RFC6749]
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.OAuthServer.OAuthTokenIntrospectionResult.exp">
+            <summary>
+             OPTIONAL. Integer timestamp, measured in the number of seconds
+             since January 1 1970 UTC, indicating when this token will expire,
+             as defined in JWT[RFC7519]
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.OAuthServer.OAuthTokenIntrospectionResult.iat">
+            <summary>
+             OPTIONAL. Integer timestamp, measured in the number of seconds
+             since January 1 1970 UTC, indicating when this token was
+             originally issued, as defined in JWT[RFC7519]
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.OAuthServer.OAuthTokenIntrospectionResult.sub">
+            <summary>
+             OPTIONAL. Subject of the token, as defined in JWT[RFC7519].
+             Usually a machine-readable identifier of the resource owner who authorized this token
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.OAuthServer.OAuthTokenIntrospectionResult.aud">
+            <summary>
+             OPTIONAL. Service-specific string identifier or list of string
+             identifiers representing the intended audience for this token,
+             as defined in JWT[RFC7519]
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.OAuthServer.OAuthTokenIntrospectionResult.iss">
+            <summary>
+             OPTIONAL. String representing the issuer of this token, as defined in JWT[RFC7519]
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.JwtContent.iss">
+            <summary> issuer </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.JwtContent.sub">
+            <summary> subject </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.JwtContent.exp">
+            <summary> expires (unix-epoch utc) </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.JwtContent.scope">
+            <summary> OAUTH Scope(s) in long name </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.IssueMode">
+            <summary>
+            Name of the Straregy:
+            RAW-INPUT
+            HTTP-GET
+            LOCAL_BASICAUTH_GENERATION
+            LOCAL_JWT_GENERATION
+            OAUTH_CIBA_CODEGRAND
+            OAUTH_CIBA_CODEGRAND_HTTPGETONLY - use url-params instead of post-body to avoid CORS problems
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.RetrieveEndpointUrl">
+            <summary>
+            when using issue mode HTTP-GET, then it could be: "assets/demoAccessToken.txt"
+            or when using issue mode OAUTH_CIBA_CODEGRAND, then it could be: "https://theOAuthServer/token".
+            The fixpoint when resolving a relative URL provided for this value is the
+            (portfolio.json)-url where the current PortfolioDescription was loaded from.
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.RetrieveEndpointAuthorization">
+            <summary>
+            for Example "basic %232432-23452-234234234%"
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.LocalLogonNamePersistation">
+            <summary>
+            "NEVER" | "OPT-IN" | "OPT-OUT" | "ALWAYS"
+            (default, if not provided: "OPT-IN")
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.LocalLogonNameSyntax">
+            <summary>
+            only valid for: LOCAL_JWT_GENERATION
+            Regular expression to validate a username pattern
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.LocalLogonNameInputLabel">
+            <summary>
+            only valid for: LOCAL_JWT_GENERATION
+            for example a Employee number
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.LocalLogonPassInputLabel">
+            <summary>
+            only valid for: LOCAL_JWT_GENERATION
+            for example a Portal password
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.LocalLogonSaltDisplayLabel">
+            <summary>
+            only valid for: LOCAL_JWT_GENERATION
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.JwtExpMinutes">
+            <summary>
+            only valid for: LOCAL_JWT_GENERATION
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.JwtSelfSignKey">
+            <summary>
+            only valid for: LOCAL_JWT_GENERATION
+            (the given string also be a JSON-Strucutre representing a 'JWK')
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.JwtSelfSignAlg">
+            <summary>
+            only valid for: LOCAL_JWT_GENERATION
+            (default: "SHA265")
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.ClientId">
+            <summary>
+            only valid for: OAUTH_CIBA_CODEGRAND
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.ClientSecret">
+            <summary>
+            only valid for: OAUTH_CIBA_CODEGRAND
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.AuthEndpointUrl">
+            <summary>
+            only valid for: OAUTH_CIBA_CODEGRAND
+            for example "https://theOAuthServer/authorize"
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.AdditionalAuthArgs">
+            <summary>
+            will be added the the request when accessing the oauth page
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.AdditionalRetrieveArgs">
+            <summary>
+            will be added the the request when retrieving the token from the oauth server
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.AuthEndpointRejectsIframe">
+            <summary>
+            this can be set to true to inform about the fact, that the
+            oauth-server will reject any logon within a iframe or is just not able
+            to handle its session-cookies correctly.
+            based on this, the ushell will skip the convenience of serving the logon
+            page within an iframe (instead of this the user will need to click on a hyperlink) 
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.ValidationMode">
+            <summary>
+            IMPLICIT_WHEN_USED
+            LOCAL_JWT_VALIDATION
+            OAUTH_INTROSPECTION_ENDPOINT
+            OAUTH_INTROSPECTION_ENDPOINT_HTTPGETONLY - use url-params instead of post-body to avoid CORS problems
+            GITHUB_VALIDATION_ENDPOINT
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.ValidationOutcomeCacheMins">
+            <summary>
+            minutes to cache validation outcomes
+            (default: 2min)
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.JwtValidationKey">
+            <summary>
+            LOCAL_JWT_VALIDATION
+            (the given string also be a JSON-Strucutre representing a 'JWK')
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.ClaimValidationIgnoresCasing">
+            <summary>
+            not compatible to IMPLICIT_WHEN_USED
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.ValidationEndpointUrl">
+            <summary>
+            Only requrired, when using a service endpoint to validate the token.
+            "https://theOAuthServer/introspect"
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.validationEndpointAuthorization">
+            <summary>
+            Only available, when using a service endpoint to validate the token.
+            Specifies content for thethe HTTP-Authorization header like this:
+            "basic %232432-23452-234234234%" or "bearer %232432-23452-234234234%"
+            where any *tokenSourceUid* can be used as placeholder.
+            </summary>
+        </member>
+        <member name="P:Security.AccessTokenHandling.AuthTokenConfig.Claims">
+            <summary>
+            Claims, used for JWT self issuing (local only) and/or token validation (local or endpoint-based).
+            Sample:
+            { "sub":"user-%logonName%", "aud": "CompanyX", "scope":"foo bar:%tenant% baz" }
+            </summary>
+        </member>
+    </members>
+</doc>
