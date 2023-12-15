@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8ADA9D95-81C9-48A7-B869-428F19EA49F6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AfsApi</RootNamespace>
+    <AssemblyName>AfsApi</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>C:\Temp\Build\AnyCPU\</OutputPath>
+    <DocumentationFile>AfsApi.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <IntermediateOutputPath>C:\Temp\Build\obj\{8ADA9D95-81C9-48A7-B869-428F19EA49F6}\AnyCPU\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>I:\Quellcode\Modules\..\Releases\CurrentBeta\AnyCPU\</OutputPath>
+    <DocumentationFile>AfsApi.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <IntermediateOutputPath>C:\Temp\Build\obj\{8ADA9D95-81C9-48A7-B869-428F19EA49F6}\AnyCPU\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AfsDirectoryInfo.vb" />
+    <Compile Include="AfsFileAttribute.vb" />
+    <Compile Include="AfsFileInfo.vb" />
+    <Compile Include="AfsCompositionScope.vb" />
+    <Compile Include="Extensions.vb" />
+    <Compile Include="Interfaces\IAfsCompositionInjector.vb" />
+    <Compile Include="Interfaces\IAfsSource.vb" />
+    <Compile Include="Interfaces\IAfsPipeProviderFactory.vb" />
+    <Compile Include="Interfaces\IAfsServerFactory.vb" />
+    <Compile Include="Interfaces\IAfsSourceProviderFactory.vb" />
+    <Compile Include="VirtualTree\AfsVirtualDirectory.vb" />
+    <Compile Include="VirtualTree\AfsVirtualTree.vb" />
+    <Compile Include="VirtualTree\IVirtualDirectory.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="WellKnownProviderIdentifiers.vb" />
+    <Compile Include="WinControls %28AUSLAGERN!!%29\Dialogs\DirectoryBrowserDialog.Designer.vb">
+      <DependentUpon>DirectoryBrowserDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\Dialogs\DirectoryBrowserDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\DirectoryTree.Designer.vb">
+      <DependentUpon>DirectoryTree.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\DirectoryTree.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\FileBrowser.Designer.vb">
+      <DependentUpon>FileBrowser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\FileBrowser.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\Dialogs\FileBrowserDialog.Designer.vb">
+      <DependentUpon>FileBrowserDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\Dialogs\FileBrowserDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\FileList.Designer.vb">
+      <DependentUpon>FileList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\FileList.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\Dialogs\FilePropertyDialog.Designer.vb">
+      <DependentUpon>FilePropertyDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\Dialogs\FilePropertyDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\FilePreview.Designer.vb">
+      <DependentUpon>FilePreview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\FilePreview.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\FilePropertyEditor.Designer.vb">
+      <DependentUpon>FilePropertyEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\FilePropertyEditor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\Configuration\ProviderConfigObjectEditor.Designer.vb">
+      <DependentUpon>ProviderConfigObjectEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\Configuration\ProviderConfigObjectEditor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\Dialogs\TreeConfigurationDialog.Designer.vb">
+      <DependentUpon>TreeConfigurationDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\Dialogs\TreeConfigurationDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\Configuration\TreeConfigurationEditor.Designer.vb">
+      <DependentUpon>TreeConfigurationEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\Configuration\TreeConfigurationEditor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\PathNavigator.Designer.vb">
+      <DependentUpon>PathNavigator.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WinControls %28AUSLAGERN!!%29\PathNavigator.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinControls %28AUSLAGERN!!%29\Dialogs\FileBrowserDialog.resx">
+      <DependentUpon>FileBrowserDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinControls %28AUSLAGERN!!%29\DirectoryTree.resx">
+      <DependentUpon>DirectoryTree.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinControls %28AUSLAGERN!!%29\FileBrowser.resx">
+      <DependentUpon>FileBrowser.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinControls %28AUSLAGERN!!%29\FileList.resx">
+      <DependentUpon>FileList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinControls %28AUSLAGERN!!%29\FilePreview.resx">
+      <DependentUpon>FilePreview.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinControls %28AUSLAGERN!!%29\PathNavigator.resx">
+      <DependentUpon>PathNavigator.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Config\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

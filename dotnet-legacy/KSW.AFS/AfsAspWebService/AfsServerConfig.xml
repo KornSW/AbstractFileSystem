@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+  <AfsServerConfig>
+    <Logons>
+      
+      <Logon>
+        <UserName>Tobias</UserName>
+        <AttachedGroups>
+          <Group>Gallerie</Group>
+        </AttachedGroups>
+        <RootDir>
+          <MountetDirs>
+            <Directory Key="Temp">AFS://C:\Temp</Directory>
+          </MountetDirs>
+        </RootDir>
+      </Logon>
+      
+    </Logons>  
+    <Groups>
+  
+      <Group>
+        <Name>Gallerie</Name>
+        <RootDir>      
+          <SubDirs>
+             <Directory Key="Icons">
+               <MountetDirs>
+                 <Directory Key="Schwarz-Blau">AFS://C:\TKP\Abboniert\Resources\Graphics\Icons\IconExp\Win8\o_collection_png\blue_dark_grey\64x64</Directory>
+                 <Directory Key="Schwarz">AFS://C:\TKP\Abboniert\Resources\Graphics\Icons\IconExp\Win8\o_collection_png\dark_grey\64x64</Directory>
+               </MountetDirs>
+             </Directory>     
+          </SubDirs>
+          <MountetDirs>
+            <Directory Key="Windows-Bilder">AFS://C:\Users\Public\Pictures\Sample Pictures</Directory>
+          </MountetDirs>
+        </RootDir>
+      </Group>
+        
+    </Groups>  
+  </AfsServerConfig>
+</Configuration>

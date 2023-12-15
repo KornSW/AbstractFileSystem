@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="AssemblyLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Temp\Build\AnyCPU</Value>
+    </Setting>
+    <Setting Name="ApplicationTypeName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">KSW.CtExpert.WebApplication.Application</Value>
+    </Setting>
+    <Setting Name="ApplicationAssemblyName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CtExpert.WebApplication.dll</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

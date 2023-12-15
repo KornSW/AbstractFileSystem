@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.vb" Inherits="KSW.Afs.WebBridge.Asp.Global_asax" Language="vb" %>
