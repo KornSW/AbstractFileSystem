@@ -1,0 +1,100 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>KornSW.AFS.DbStore</AssemblyName>
+    <RootNamespace>System</RootNamespace>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <PackageId>AbstractFileSystem.DbStore</PackageId>
+    <Description>AbstractFileSystem.MvcSupport</Description>
+    <Product>AbstractFileSystem.DbStore</Product>
+    <Company>(public domain)</Company>
+    <Copyright>SmartStandards</Copyright>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <Authors>SmartStandards</Authors>
+    <FileVersion>1.0.0.0</FileVersion>
+    <PackageTags></PackageTags>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>..\..\dist\bin-net6.0\KornSW.AFS.DbStore.xml</DocumentationFile>
+    <OutputPath>..\..\dist\bin-net6.0\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <DefineConstants>TRACE;DEBUG;NET5</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\..\dist\bin-net6.0\</OutputPath>
+    <DocumentationFile>..\..\dist\bin-net6.0\KornSW.AFS.DbStore.xml</DocumentationFile>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <DefineConstants>TRACE;NET5</DefineConstants>
+  </PropertyGroup>
+
+  <Import Project="..\AbstractFileSystem.DbStore\AbstractFileSystem.DbStore.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <Compile Remove="C:\TKP\%28git%29\AbstractFileSystem\dotnet\src\AbstractFileSystem.DbStore\Persistence.EF\Context.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\AbstractFileSystem.DbStore\Persistence.EF\Context.Generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FUSE-fx.EntityAnnotations" Version="4.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.26">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.26">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AbstractFileSystem.RepositoryContract.net6.0\AbstractFileSystem.RepositoryContract.net6.0.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="C:\TKP\%28git%29\AbstractFileSystem\dotnet\src\AbstractFileSystem.DbStore\Persistence.EF\Context.tt">
+      <LastGenOutput>Context.Generated.cs</LastGenOutput>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="C:\TKP\%28git%29\AbstractFileSystem\dotnet\src\AbstractFileSystem.DbStore\Persistence.EF\Context.tt">
+      <LastGenOutput>Context.Generated.cs</LastGenOutput>
+    </Content>
+    <Content Update="C:\TKP\%28git%29\AbstractFileSystem\dotnet\src\AbstractFileSystem.DbStore\Persistence.EF\Entities.tt">
+      <LastGenOutput>Entities.Generated.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="C:\TKP\%28git%29\AbstractFileSystem\dotnet\src\AbstractFileSystem.DbStore\Persistence.EF\Context.tt">
+      <LastGenOutput>Context.Generated.cs</LastGenOutput>
+    </None>
+    <None Update="C:\TKP\%28git%29\AbstractFileSystem\dotnet\src\AbstractFileSystem.DbStore\Persistence.EF\Entities.tt">
+      <LastGenOutput>Entities.Generated.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

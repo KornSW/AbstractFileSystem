@@ -1,6 +1,6 @@
 using System;
 
-namespace System.IO {
+namespace System.IO.Abstraction {
 
 
   public class AfsMvcHelper {

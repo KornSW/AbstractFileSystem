@@ -11,7 +11,7 @@
     <AssemblyName>AfsNotepad</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -56,10 +56,47 @@
     <ApplicationIcon>AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ActivationHooks, Version=3.0.0.198, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ActivationHooks.3.0.0.198\lib\{tfm}\ActivationHooks.dll</HintPath>
+    </Reference>
+    <Reference Include="AmbientScoping, Version=1.0.1.198, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AmbientScoping.1.0.1.198\lib\{tfm}\AmbientScoping.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentDiscovery, Version=4.1.0.163, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ComponentDiscovery.4.1.0.163\lib\{tfm}\ComponentDiscovery.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServerCompact, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.SqlServerCompact.6.1.3\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
+    </Reference>
+    <Reference Include="kswUtils, Version=1.2.2.166, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\kswUtils.1.2.2\lib\{tfm}\kswUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="kswWinFormsLib, Version=1.2.1.209, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\kswWinformsLib.1.2.1.209\lib\{tfm}\kswWinFormsLib.dll</HintPath>
+    </Reference>
+    <Reference Include="kSystemExtensions, Version=2.3.7.142, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\kSystemExtensions.2.3.7.142\lib\{tfm}\kSystemExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -79,6 +116,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -113,6 +151,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppIcon.ico" />
@@ -128,17 +167,15 @@
       <Name>AfsApi</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\AfsCommonProviders\AfsCommonProviders.vbproj">
-      <Project>{b9fa6b20-dbde-43c4-a3e1-ea0c55581c3a}</Project>
-      <Name>AfsCommonProviders</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AfsKernel\AfsKernel.vbproj">
-      <Project>{a477bde5-3d65-4027-90c7-c2574b1297bd}</Project>
-      <Name>AfsKernel</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
+    if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

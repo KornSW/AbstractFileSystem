@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>KornSW.AbstractFileSystem.DbStore</id>
+    <version>999.0.2-localbuild</version>
+    <title>AbstractFileSystem - DB Store</title>
+    <authors>KornSW</authors>
+    <owners>(public domain)</owners>
+    <copyright>KornSW</copyright>
+    <description>AbstractFileSystem - DB Store</description>
+    <tags>AFS Abstract FileSystem</tags>
+    <!-- https://spdx.org/licenses/ -->
+    <license type="expression">GPL-3.0-only</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <icon>PackageIcon.png</icon>
+    <projectUrl>https://github.com/KornSW/AbstractFileSystem</projectUrl>
+    <dependencies>
+      <dependencies>
+        <group targetFramework="net6.0">
+          <dependency id="KornSW.AbstractFileSystem.RepositoryContract" version="[999.0.0,999.999]" />
+          <dependency id="Newtonsoft.Json" version="[13.0.3,13.999]" />
+        </group>
+      </dependencies>
+    </dependencies>
+  </metadata>
+  <files>
+    <!-- https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package#from-a-convention-based-working-directory -->
+    <file src="PackageIcon.png" target="" />
+    <!-- .NET 6.0 -->
+    <file src="dist\bin-net6.0\KornSW.AFS.DbStore.dll" target="lib/net6.0" />
+    <file src="dist\bin-net6.0\KornSW.AFS.DbStore.xml" target="lib/net6.0" />
+    <file src="dist\bin-net6.0\KornSW.AFS.DbStore.pdb" target="lib/net6.0" />
+  </files>
+</package>

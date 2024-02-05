@@ -6,7 +6,11 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4130D21C-FE8F-4925-93E7-217B4AF1B7D9}"
 	ProjectSection(SolutionItems) = preProject
 		..\vers\changelog.md = ..\vers\changelog.md
+		KornSW.AbstractFileSystem.Common.nuspec = KornSW.AbstractFileSystem.Common.nuspec
+		KornSW.AbstractFileSystem.DbStore.nuspec = KornSW.AbstractFileSystem.DbStore.nuspec
+		KornSW.AbstractFileSystem.MvcSupport.nuspec = KornSW.AbstractFileSystem.MvcSupport.nuspec
 		KornSW.AbstractFileSystem.RepositoryContract.nuspec = KornSW.AbstractFileSystem.RepositoryContract.nuspec
+		KornSW.AbstractFileSystem.WinFormsClient.nuspec = KornSW.AbstractFileSystem.WinFormsClient.nuspec
 		..\readme.md = ..\readme.md
 	EndProjectSection
 EndProject
@@ -45,6 +49,20 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractFileSystem.RepositoryContract.net6.0", "src\AbstractFileSystem.RepositoryContract.net6.0\AbstractFileSystem.RepositoryContract.net6.0.csproj", "{AE731142-0FD6-467B-9A4A-5CDB74CCA95E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractFileSystem.RepositoryContract.net461", "src\AbstractFileSystem.RepositoryContract.net461\AbstractFileSystem.RepositoryContract.net461.csproj", "{EA7C2C8A-1C5C-4B37-9AC8-14DCF5D3CF48}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoWebService", "test\AbstractFileSystem.DemoWebService\DemoWebService.csproj", "{73E0065E-247B-45B6-98F6-4E3AF8386311}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PHP", "PHP", "{46ED0C7A-A372-4F1E-8B83-324F0DE72E76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractFileSystem.DbStore.Edmx", "src\AbstractFileSystem.DbStore.Edmx\AbstractFileSystem.DbStore.Edmx.csproj", "{827BDD27-C32B-4BB4-B6E4-6914C953AE2D}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AbstractFileSystem.DbStore", "src\AbstractFileSystem.DbStore\AbstractFileSystem.DbStore.shproj", "{CF0A161A-99BA-4F01-AF5F-16C6FCBC95AE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractFileSystem.DbStore.net6.0", "src\AbstractFileSystem.DbStore.net6.0\AbstractFileSystem.DbStore.net6.0.csproj", "{A8D506C5-B845-4CB6-8523-D99FF44D3403}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "targets", "targets", "{93EE981B-624E-4665-82CC-9529EDF513CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{078E66FD-E74B-4357-B910-73B4E3EECF2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -175,6 +193,42 @@ Global
 		{EA7C2C8A-1C5C-4B37-9AC8-14DCF5D3CF48}.Release|x64.Build.0 = Release|Any CPU
 		{EA7C2C8A-1C5C-4B37-9AC8-14DCF5D3CF48}.Release|x86.ActiveCfg = Release|Any CPU
 		{EA7C2C8A-1C5C-4B37-9AC8-14DCF5D3CF48}.Release|x86.Build.0 = Release|Any CPU
+		{73E0065E-247B-45B6-98F6-4E3AF8386311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73E0065E-247B-45B6-98F6-4E3AF8386311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73E0065E-247B-45B6-98F6-4E3AF8386311}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{73E0065E-247B-45B6-98F6-4E3AF8386311}.Debug|x64.Build.0 = Debug|Any CPU
+		{73E0065E-247B-45B6-98F6-4E3AF8386311}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{73E0065E-247B-45B6-98F6-4E3AF8386311}.Debug|x86.Build.0 = Debug|Any CPU
+		{73E0065E-247B-45B6-98F6-4E3AF8386311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73E0065E-247B-45B6-98F6-4E3AF8386311}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73E0065E-247B-45B6-98F6-4E3AF8386311}.Release|x64.ActiveCfg = Release|Any CPU
+		{73E0065E-247B-45B6-98F6-4E3AF8386311}.Release|x64.Build.0 = Release|Any CPU
+		{73E0065E-247B-45B6-98F6-4E3AF8386311}.Release|x86.ActiveCfg = Release|Any CPU
+		{73E0065E-247B-45B6-98F6-4E3AF8386311}.Release|x86.Build.0 = Release|Any CPU
+		{827BDD27-C32B-4BB4-B6E4-6914C953AE2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{827BDD27-C32B-4BB4-B6E4-6914C953AE2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{827BDD27-C32B-4BB4-B6E4-6914C953AE2D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{827BDD27-C32B-4BB4-B6E4-6914C953AE2D}.Debug|x64.Build.0 = Debug|Any CPU
+		{827BDD27-C32B-4BB4-B6E4-6914C953AE2D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{827BDD27-C32B-4BB4-B6E4-6914C953AE2D}.Debug|x86.Build.0 = Debug|Any CPU
+		{827BDD27-C32B-4BB4-B6E4-6914C953AE2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{827BDD27-C32B-4BB4-B6E4-6914C953AE2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{827BDD27-C32B-4BB4-B6E4-6914C953AE2D}.Release|x64.ActiveCfg = Release|Any CPU
+		{827BDD27-C32B-4BB4-B6E4-6914C953AE2D}.Release|x64.Build.0 = Release|Any CPU
+		{827BDD27-C32B-4BB4-B6E4-6914C953AE2D}.Release|x86.ActiveCfg = Release|Any CPU
+		{827BDD27-C32B-4BB4-B6E4-6914C953AE2D}.Release|x86.Build.0 = Release|Any CPU
+		{A8D506C5-B845-4CB6-8523-D99FF44D3403}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8D506C5-B845-4CB6-8523-D99FF44D3403}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8D506C5-B845-4CB6-8523-D99FF44D3403}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A8D506C5-B845-4CB6-8523-D99FF44D3403}.Debug|x64.Build.0 = Debug|Any CPU
+		{A8D506C5-B845-4CB6-8523-D99FF44D3403}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A8D506C5-B845-4CB6-8523-D99FF44D3403}.Debug|x86.Build.0 = Debug|Any CPU
+		{A8D506C5-B845-4CB6-8523-D99FF44D3403}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8D506C5-B845-4CB6-8523-D99FF44D3403}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8D506C5-B845-4CB6-8523-D99FF44D3403}.Release|x64.ActiveCfg = Release|Any CPU
+		{A8D506C5-B845-4CB6-8523-D99FF44D3403}.Release|x64.Build.0 = Release|Any CPU
+		{A8D506C5-B845-4CB6-8523-D99FF44D3403}.Release|x86.ActiveCfg = Release|Any CPU
+		{A8D506C5-B845-4CB6-8523-D99FF44D3403}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -183,12 +237,12 @@ Global
 		{CF0A161A-99BA-4F01-AF5E-16C6FCBC85AE} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
 		{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2} = {ADA576B9-92C4-4C75-9605-06023D1026B2}
 		{5E17C8E8-0BC8-4F7C-A022-C8104A415628} = {C5272353-539E-4138-93FD-9DF437F6DA47}
-		{A6925214-F00D-4F5B-8C3A-60343769A83E} = {C5272353-539E-4138-93FD-9DF437F6DA47}
-		{D0B8734C-340F-4B2A-80EE-C00AFDD59E13} = {C5272353-539E-4138-93FD-9DF437F6DA47}
+		{A6925214-F00D-4F5B-8C3A-60343769A83E} = {93EE981B-624E-4665-82CC-9529EDF513CC}
+		{D0B8734C-340F-4B2A-80EE-C00AFDD59E13} = {93EE981B-624E-4665-82CC-9529EDF513CC}
 		{CF0A161A-99BA-4F01-AF5E-16C6FCBC95AE} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
 		{ADA576B9-92C4-4C75-9605-06023D1026B2} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
 		{4AF041BF-8D36-46D6-9E83-737231CFCB26} = {ADA576B9-92C4-4C75-9605-06023D1026B2}
-		{3E8C91F2-37BE-409C-89A7-02DA48C0BE5F} = {C5272353-539E-4138-93FD-9DF437F6DA47}
+		{3E8C91F2-37BE-409C-89A7-02DA48C0BE5F} = {078E66FD-E74B-4357-B910-73B4E3EECF2F}
 		{25035403-D38A-4DA2-92FA-845EA4F799A1} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
 		{2D7DE462-5FEA-4E11-8DE1-6A4AA996D245} = {ADA576B9-92C4-4C75-9605-06023D1026B2}
 		{DCDC3890-1E78-43E6-8ECD-EA77458BDDCE} = {ADA576B9-92C4-4C75-9605-06023D1026B2}
@@ -196,6 +250,11 @@ Global
 		{E0BD4A6F-E54E-42D3-A483-05F81472CA39} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
 		{AE731142-0FD6-467B-9A4A-5CDB74CCA95E} = {ADA576B9-92C4-4C75-9605-06023D1026B2}
 		{EA7C2C8A-1C5C-4B37-9AC8-14DCF5D3CF48} = {ADA576B9-92C4-4C75-9605-06023D1026B2}
+		{73E0065E-247B-45B6-98F6-4E3AF8386311} = {078E66FD-E74B-4357-B910-73B4E3EECF2F}
+		{827BDD27-C32B-4BB4-B6E4-6914C953AE2D} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
+		{CF0A161A-99BA-4F01-AF5F-16C6FCBC95AE} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
+		{A8D506C5-B845-4CB6-8523-D99FF44D3403} = {ADA576B9-92C4-4C75-9605-06023D1026B2}
+		{93EE981B-624E-4665-82CC-9529EDF513CC} = {C5272353-539E-4138-93FD-9DF437F6DA47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2F37C1D-32F0-4BF2-AAEB-46B9D8C07D23}
@@ -207,10 +266,12 @@ Global
 		test\AbstractFileSystem.Tests\AbstractFileSystem.Tests.projitems*{5e17c8e8-0bc8-4f7c-a022-c8104a415628}*SharedItemsImports = 13
 		src\AbstractFileSystem\AbstractFileSystem.Common.projitems*{7ff622ca-2075-4983-8ced-24fd4f4fe14b}*SharedItemsImports = 5
 		test\AbstractFileSystem.Tests\AbstractFileSystem.Tests.projitems*{a6925214-f00d-4f5b-8c3a-60343769a83e}*SharedItemsImports = 5
+		src\AbstractFileSystem.DbStore\AbstractFileSystem.DbStore.projitems*{a8d506c5-b845-4cb6-8523-d99ff44d3403}*SharedItemsImports = 5
 		src\AbstractFileSystem.RepositoryContract\AbstractFileSystem.RepositoryContract.projitems*{ae731142-0fd6-467b-9a4a-5cdb74cca95e}*SharedItemsImports = 5
 		src\AbstractFileSystem\AbstractFileSystem.Common.projitems*{b0ba06fe-6437-4b9e-8c76-3adfc8d191d2}*SharedItemsImports = 4
 		src\AbstractFileSystem\AbstractFileSystem.Common.projitems*{cf0a161a-99ba-4f01-af5e-16c6fcbc85ae}*SharedItemsImports = 13
 		src\AbstractFileSystem.MvcSupport\AbstractFileSystem.MvcSupport.projitems*{cf0a161a-99ba-4f01-af5e-16c6fcbc95ae}*SharedItemsImports = 13
+		src\AbstractFileSystem.DbStore\AbstractFileSystem.DbStore.projitems*{cf0a161a-99ba-4f01-af5f-16c6fcbc95ae}*SharedItemsImports = 13
 		test\AbstractFileSystem.Tests\AbstractFileSystem.Tests.projitems*{d0b8734c-340f-4b2a-80ee-c00afdd59e13}*SharedItemsImports = 4
 		src\AbstractFileSystem.WinFormsClient\AbstractFileSystem.WinFormsClient.projitems*{dcdc3890-1e78-43e6-8ecd-ea77458bddce}*SharedItemsImports = 4
 		src\AbstractFileSystem.RepositoryContract\AbstractFileSystem.RepositoryContract.projitems*{e0bd4a6f-e54e-42d3-a483-05f81472ca39}*SharedItemsImports = 13

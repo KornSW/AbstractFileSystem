@@ -3,11 +3,11 @@
   <metadata>
     <id>KornSW.AbstractFileSystem.RepositoryContract</id>
     <version>999.0.2-localbuild</version>
-    <title>KornSW.AbstractFileSystem.RepositoryContract</title>
+    <title>AbstractFileSystem - Repository Contract</title>
     <authors>KornSW</authors>
     <owners>(public domain)</owners>
     <copyright>KornSW</copyright>
-    <description>KornSW.AbstractFileSystem.RepositoryContract</description>
+    <description>AbstractFileSystem - Repository Contract</description>
     <tags>AFS Abstract FileSystem</tags>
     <!-- https://spdx.org/licenses/ -->
     <license type="expression">GPL-3.0-only</license>
@@ -16,8 +16,10 @@
     <projectUrl>https://github.com/KornSW/AbstractFileSystem</projectUrl>
     <dependencies>
       <group targetFramework=".NETFramework4.6">
+        <dependency id="Newtonsoft.Json" version="[13.0.3,13.999]" />
       </group>
       <group targetFramework="net6.0">
+        <dependency id="Newtonsoft.Json" version="[13.0.3,13.999]" />
       </group>
     </dependencies>
   </metadata>

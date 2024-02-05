@@ -9,6 +9,21 @@
     <Import_RootNamespace>System</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AfsRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)%28import from GitHub%29\Minimatcher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\..\..\..\..\%28git%29\AbstractFileSystem\dotnet\src\AbstractFileSystem\Connectors\AfsHttpRepositoryConnector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AfsLocalRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AfsExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pipes\AfsEncryptionPipe.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pipes\AfsCachingPipe.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Connectors\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)%28import from GitHub%29\Minimatcher.tt">
+      <CustomToolNamespace>
+      </CustomToolNamespace>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </Content>
   </ItemGroup>
 </Project>

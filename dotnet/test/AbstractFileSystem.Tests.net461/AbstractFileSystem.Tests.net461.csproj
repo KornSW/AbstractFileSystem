@@ -82,15 +82,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\AbstractFileSystem.net461\AbstractFileSystem.Common.net461.csproj">
       <Project>{b0ba06fe-6437-4b9e-8c76-3adfc8d191d2}</Project>
-      <Name>AbstractFileSystem.net461</Name>
+      <Name>AbstractFileSystem.Common.net461</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\AbstractFileSystem.RepositoryContract.net461\AbstractFileSystem.RepositoryContract.net461.csproj">
       <Project>{ea7c2c8a-1c5c-4b37-9ac8-14dcf5d3cf48}</Project>
       <Name>AbstractFileSystem.RepositoryContract.net461</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\AbstractFileSystem.WinFormsClient.net461\AbstractFileSystem.WinFormsClient.net461.csproj">
-      <Project>{dcdc3890-1e78-43e6-8ecd-ea77458bddce}</Project>
-      <Name>AbstractFileSystem.WinFormsClient.net461</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\AbstractFileSystem.Tests\AbstractFileSystem.Tests.projitems" Label="Shared" />

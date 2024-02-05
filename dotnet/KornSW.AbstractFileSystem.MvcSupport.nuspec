@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>KornSW.AbstractFileSystem.MvcSupport</id>
+    <version>999.0.2-localbuild</version>
+    <title>AbstractFileSystem - MVC Support</title>
+    <authors>KornSW</authors>
+    <owners>(public domain)</owners>
+    <copyright>KornSW</copyright>
+    <description>AbstractFileSystem - MVC Support</description>
+    <tags>AFS Abstract FileSystem</tags>
+    <!-- https://spdx.org/licenses/ -->
+    <license type="expression">GPL-3.0-only</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <icon>PackageIcon.png</icon>
+    <projectUrl>https://github.com/KornSW/AbstractFileSystem</projectUrl>
+      <dependencies>
+        <group targetFramework="net6.0">
+          <dependency id="KornSW.AbstractFileSystem.RepositoryContract" version="[999.0.0,999.999]" />
+          <dependency id="Newtonsoft.Json" version="[13.0.3,13.999]" />
+          <dependency id="Microsoft.AspNetCore.Http" version="[2.2.2,2.999]" />
+          <dependency id="Microsoft.AspNetCore.Mvc.Core" version="[2.2.2,2.999]" />
+          <dependency id="Newtonsoft.Json" version="[13.0.3,13.999]" />
+        </group>
+      </dependencies>
+  </metadata>
+  <files>
+    <!-- https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package#from-a-convention-based-working-directory -->
+    <file src="PackageIcon.png" target="" />
+    <!-- .NET 6.0 -->
+    <file src="dist\bin-net6.0\KornSW.AFS.MvcSupport.dll" target="lib/net6.0" />
+    <file src="dist\bin-net6.0\KornSW.AFS.MvcSupport.xml" target="lib/net6.0" />
+    <file src="dist\bin-net6.0\KornSW.AFS.MvcSupport.pdb" target="lib/net6.0" />
+  </files>
+</package>

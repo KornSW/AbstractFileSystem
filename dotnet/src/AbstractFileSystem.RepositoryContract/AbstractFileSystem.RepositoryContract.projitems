@@ -9,6 +9,10 @@
     <Import_RootNamespace>System</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AfsRepositoryCapabilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AfsAttributeType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AfsWellknownAttributeNames.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AfsAttributeDescriptor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IAfsRepository.cs" />
   </ItemGroup>
 </Project>

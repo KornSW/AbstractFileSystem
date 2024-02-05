@@ -7,7 +7,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace System.Windows.Forms {
+namespace System.Windows.Forms.AfsSupport {
 
   public class AfsWinFormsHelper {
 

@@ -1,4 +1,5 @@
-﻿Imports System.IO.AbstractFilesystem
+﻿Imports System.IO
+Imports System.IO.AbstractFilesystem
 
 Public Class HfsClientFactory
   Implements IAfsSourceProviderFactory
@@ -45,6 +46,12 @@ End Class
 Partial Class HfsConection
   Implements IAfsSource
 
+  Public ReadOnly Property SourceIdentifier As String Implements IAfsSource.SourceIdentifier
+    Get
+      Throw New NotImplementedException()
+    End Get
+  End Property
+
   Public Function GetDirectories(ralativePath As String) As IEnumerable(Of AfsDirectoryInfo) Implements IAfsSource.GetDirectories
 
 
@@ -61,4 +68,59 @@ Partial Class HfsConection
 
   End Function
 
+  Public Function GetDirectories() As IEnumerable(Of AfsDirectoryInfo) Implements IAfsDirectoryInfo.GetDirectories
+    Throw New NotImplementedException()
+  End Function
+
+  Public Function OpenRead(relativePath As String) As Stream Implements IAfsSource.OpenRead
+    Throw New NotImplementedException()
+  End Function
+
+  Public Function OpenWrite(relativePath As String) As Stream Implements IAfsSource.OpenWrite
+    Throw New NotImplementedException()
+  End Function
+
+  Public Function TestAccessability(relativePath As String) As Boolean Implements IAfsSource.TestAccessability
+    Throw New NotImplementedException()
+  End Function
+
+  Public Function GetFileLastWriteTime(relativePath As String) As Date Implements IAfsSource.GetFileLastWriteTime
+    Throw New NotImplementedException()
+  End Function
+
+  Public Function GetFileCreationTime(relativePath As String) As Date Implements IAfsSource.GetFileCreationTime
+    Throw New NotImplementedException()
+  End Function
+
+  Public Function GetFileLength(relativePath As String) As Long Implements IAfsSource.GetFileLength
+    Throw New NotImplementedException()
+  End Function
+
+  Public Function SearchFiles(startDirectory As String, mask As String, recursive As Boolean, limitResults As Integer) As IEnumerable(Of AfsFileInfo) Implements IAfsSource.SearchFiles
+    Throw New NotImplementedException()
+  End Function
+
+  Public Function SearchFiles(mask As String, recursive As Boolean, limitResults As Integer) As IEnumerable(Of AfsFileInfo) Implements IAfsDirectoryInfo.SearchFiles
+    Throw New NotImplementedException()
+  End Function
+
+  Public Function GetSource() As IAfsSource Implements IAfsDirectoryInfo.GetSource
+    Throw New NotImplementedException()
+  End Function
+
+  Public Function GetDirectory(relativePath As String) As AfsDirectoryInfo Implements IAfsDirectoryInfo.GetDirectory
+    Throw New NotImplementedException()
+  End Function
+
+  Public Function GetFiles(relativePath As String) As IEnumerable(Of AfsFileInfo) Implements IAfsDirectoryInfo.GetFiles
+    Throw New NotImplementedException()
+  End Function
+
+  Public Function GetFiles() As IEnumerable(Of AfsFileInfo) Implements IAfsDirectoryInfo.GetFiles
+    Throw New NotImplementedException()
+  End Function
+
+  Public Function GetFile(relativePath As String) As AfsFileInfo Implements IAfsDirectoryInfo.GetFile
+    Throw New NotImplementedException()
+  End Function
 End Class
