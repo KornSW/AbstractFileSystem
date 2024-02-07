@@ -1,120 +1,167 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace System.IO.Abstraction {
 
-  //public class AfsCachingPipe : IAfsRepository {
+  /// <summary>
+  /// Applies a Caching-Feature when accessig slow source repositories over internet connections
+  /// </summary>
+  [DebuggerDisplay("{InfoString} (AfsCachingPipe)")]
+  public class AfsCachingPipe : IAfsRepository {
 
-  //  public AfsAttributeDescriptor[] GetAvailableAttributes() {
-  //    return new AfsAttributeDescriptor[] {
-  //      new AfsAttributeDescriptor {
-  //        AttributeName = "Id",
-  //        AttributeType = AfsAttributeType.String
-  //      }
-  //    };
-  //  }
+    protected static string BuildIdentityRelatedCacheDir(string storeIdentity, string localCacheDirectory = null) {
+      if (string.IsNullOrWhiteSpace(localCacheDirectory)) {
+        localCacheDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "AFS-Cache");
+      }
+      using (var md5 = new MD5CryptoServiceProvider()) {
+        byte[] urlHash = md5.ComputeHash(
+          Encoding.ASCII.GetBytes(storeIdentity)
+        );
 
-  //  public AfsRepositoryCapabilities GetCapabilities() {
-  //    return new AfsRepositoryCapabilities { };
-  //  }
+        return Path.Combine(localCacheDirectory, Convert.ToBase64String(urlHash));
+      }
+    }
 
-  //  #region " pre-checks for certain file operations "
+    /// <summary> </summary>
+    /// <param name="innerRepository">An AFS Repsitory that contains the files to be accessed.</param>
+    /// <param name="localCacheDirectory">A directory on the local disk, where the cache should be located (or null to use the default)</param>
+    /// <param name="maxSizeBytes">Limit the size of the cache (0 will disable the caching)</param>
+    public AfsCachingPipe(IAfsRepository innerRepository, string localCacheDirectory = null, long maxSizeBytes = 50 * 1024 * 1024) {
+      //ATTENTION: if maxSizeBytes==0 the pipe should act as it would not be present - so in this case it MUST NOT auto-create or access the localCacheDirectory dir!!
+      _InnerRepository = innerRepository;
+    }
 
-  //  public bool CanDelete(string fileKeys) {
-  //    return false;
-  //  }
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private IAfsRepository _InnerRepository;
 
-  //  public bool CanDownloadContent(string fileKeys) {
-  //    return false;
-  //  }
+    public IAfsRepository InnerRepository { 
+      get {
+        return _InnerRepository;
+      } 
+    }
 
-  //  public bool CanOverwrite(string fileKeys) {
-  //    return false;
-  //  }
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    internal virtual string InfoString {
+      get {
+        return  this.GetOriginIdentity();
+      }
+    }
 
-  //  public bool CanUpdateAttributes(string fileKeys) {
-  //    return false;
-  //  }
+    public string GetOriginIdentity() {
+      return _InnerRepository.GetOriginIdentity();
+    }
 
-  //  #endregion
+    public AfsRepositoryCapabilities GetCapabilities() {
+      return _InnerRepository.GetCapabilities();
+    }
 
-  //  public string[] ListAllFiles(string sortingAttributeName, int limit, int skip) {
-  //    return null;
-  //  }
+    public AfsAttributeDescriptor[] GetAvailableAttributes() {
+      return _InnerRepository.GetAvailableAttributes();
+      //? evtl Cache-Date zusätzlich
+    }
 
-  //  public string[] SearchFilesByAttribute(Dictionary<string, string> attributesToFilter, string sortingAttributeName, int limit, int skip) {
-  //    return null;
-  //  }
+    #region " pre-checks for certain file operations "
 
-  //  public string[] SearchFilesByContent(string textWithinContent, Dictionary<string, string> attributesToFilter, string sortingAttributeName, int limit, int skip) {
-  //    return null;
-  //  }
+    public bool CanDelete(string[] fileKeys) {
+      return _InnerRepository.CanDelete(fileKeys);
+    }
 
-  //  public Dictionary<string, string>[] LoadFileAttributes(string[] fileKeys, string[] includedAttributeNames) {
-  //    return null;
-  //  }
+    public bool CanDownloadContent(string[] fileKeys) {
+      return _InnerRepository.CanDownloadContent(fileKeys);
+    }
 
-  //  public bool CheckFileExists(string fileKey) {
-  //    return false;
-  //  }
+    public bool CanOverwrite(string[] fileKeys) {
+      return _InnerRepository.CanOverwrite(fileKeys);
+    }
 
-  //  public bool UpdateKey(string oldFileKey, string newFileKey) {
-  //    return false;
-  //  }
+    public bool CanUpdateAttributes(string[] fileKeys) {
+      return _InnerRepository.CanUpdateAttributes(fileKeys);
+    }
 
-  //  public bool UpdateAttributes(Dictionary<string, string> attributes) {
-  //    return false;
-  //  }
+    #endregion
 
-  //  public string RequestOtpForDownloadContent(string fileKey) {
-  //    return null;
-  //  }
+    public string[] ListAllFiles(string sortingAttributeName, int limit, int skip) {
+      //TODO: one of the first places to integrate the cache
+      return _InnerRepository.ListAllFiles(sortingAttributeName, limit, skip);
+    }
 
-  //  public string RequestOtpForFileOverwrite(string fileKey) {
-  //    return null;
-  //  }
+    public string[] SearchFilesByAttribute(Dictionary<string, string> attributesToFilter, string sortingAttributeName, int limit, int skip) {
+      return _InnerRepository.SearchFilesByAttribute(attributesToFilter, sortingAttributeName, limit, skip);
+    }
 
-  //  public string RequestOtpForNewFileCreation(Dictionary<string, string> attributeValues) {
-  //    return null;
-  //  }
+    public string[] SearchFilesByContent(string textWithinContent, Dictionary<string, string> attributesToFilter, string sortingAttributeName, int limit, int skip) {
+      return _InnerRepository.SearchFilesByContent(textWithinContent, attributesToFilter, sortingAttributeName, limit, skip);
+    }
 
-  //  public string CreateNewFile(string otp, byte[] content, string newMimeType) {
-  //    return null;
-  //  }
+    public Dictionary<string, string>[] LoadFileAttributes(string[] fileKeys, string[] includedAttributeNames) {
+      return _InnerRepository.LoadFileAttributes(fileKeys, includedAttributeNames);
+    }
 
-  //  public byte[] DownloadFileContent(string otp) {
-  //    return null;
-  //  }
+    public bool CheckFileExists(string fileKey) {
+      return _InnerRepository.CheckFileExists(fileKey);
+    }
 
-  //  public bool TryOverwriteFile(string otp, byte[] content, string newMimeType) {
-  //    return false;
-  //  }
+    public bool UpdateKey(string oldFileKey, string newFileKey) {
+      return _InnerRepository.UpdateKey(oldFileKey, newFileKey);
+    }
 
-  //  public bool TryDeleteFile(string key) {
-  //    return false;
-  //  }
+    public Dictionary<string, string> UpdateAttributes(Dictionary<string, string> attributes) {
+      return _InnerRepository.UpdateAttributes(attributes);
+    }
 
-  //  public byte[] LoadThumnail(string fileKey, int sizePx, bool square) {
-  //    return null;
-  //  }
+    public string RequestOtpForDownloadContent(string fileKey) {
+      return _InnerRepository.RequestOtpForDownloadContent(fileKey);
+    }
 
-  //  #region " ManagedValueRange "
+    public string RequestOtpForFileOverwrite(string fileKey) {
+      return _InnerRepository.RequestOtpForFileOverwrite(fileKey);
+    }
 
-  //  public string[] GetValueRange(string attributeName, string filter, out bool isReadOnly) {
-  //    isReadOnly = true;
-  //    return null;
-  //  }
+    public string RequestOtpForNewFileCreation(Dictionary<string, string> attributeValues) {
+      return _InnerRepository.RequestOtpForNewFileCreation(attributeValues);
+    }
 
-  //  public bool TryAddToValueRange(string attributeName, string valueToAdd) {
-  //    return false;
-  //  }
+    public string CreateNewFile(string otp, byte[] content, string newMimeType) {
+      return _InnerRepository.CreateNewFile(otp, content, newMimeType);
+    }
 
-  //  public bool TryRemoveFromValueRange(string attributeName, string valueToRemove) {
-  //    return false;
-  //  }
+    public byte[] DownloadFileContent(string otp) {
+      //TODO: one of the first places to integrate the cache
+      return _InnerRepository.DownloadFileContent(otp);
+    }
 
-  //  #endregion
+    public bool TryOverwriteFile(string otp, byte[] content, string newMimeType) {
+      return _InnerRepository.TryOverwriteFile(otp, content, newMimeType);
+    }
 
-  //}
+    public bool TryDeleteFile(string fileKey) {
+      return _InnerRepository.TryDeleteFile(fileKey);
+    }
+
+    public byte[] LoadThumnail(string fileKey, int sizePx, bool square) {
+      //TODO: one of the first places to integrate the cache
+      return _InnerRepository.LoadThumnail(fileKey, sizePx, square);
+    }
+
+    #region " ManagedValueRange "
+
+    public string[] GetValueRange(string attributeName, string filter, out bool isReadOnly) {
+      return _InnerRepository.GetValueRange(attributeName, filter, out isReadOnly);
+    }
+
+    public bool TryAddToValueRange(string attributeName, string valueToAdd) {
+      return _InnerRepository.TryAddToValueRange(attributeName, valueToAdd);
+    }
+
+    public bool TryRemoveFromValueRange(string attributeName, string valueToRemove) {
+      return _InnerRepository.TryRemoveFromValueRange(attributeName, valueToRemove);
+    }
+
+    #endregion
+
+  }
 
 }

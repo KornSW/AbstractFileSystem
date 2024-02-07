@@ -4,7 +4,13 @@ namespace System.IO.Abstraction {
 
   public interface IAfsRepository {
 
-     AfsRepositoryCapabilities GetCapabilities();
+    /// <summary>
+    /// Get an string, representing the "Identity" of the current origin.
+    /// This can be used to discriminate multiple source repos (for usecases like caching)
+    /// </summary>
+    string GetOriginIdentity();
+
+    AfsRepositoryCapabilities GetCapabilities();
 
     /// <summary>
     /// gets the list of supported attributes.
@@ -49,7 +55,7 @@ namespace System.IO.Abstraction {
     /// Lists all files,
     /// processes sorting and paging and returns the keys of that files.
     /// </summary>
-    /// <param name="sortingAttributeName"></param>
+    /// <param name="sortingAttributeName">can contain the prefix ^ for desc-order</param>
     /// <param name="limit"></param>
     /// <param name="skip"></param>
     /// <returns></returns>
@@ -65,14 +71,14 @@ namespace System.IO.Abstraction {
     /// For attributes of type 'AreaPath' the MINIMATCH/GLOB pattern is used (expressions like '**/abc*').
     /// This alles non-recurcive filtering for 1 level: 'my/area/*' will only return direct childs
     /// </param>
-    /// <param name="sortingAttributeName"></param>
+    /// <param name="sortingAttributeName">can contain the prefix ^ for desc-order</param>
     /// <param name="limit"></param>
     /// <param name="skip"></param>
     /// <returns></returns>
     string[] SearchFilesByAttribute(Dictionary<string, string> attributesToFilter, string sortingAttributeName, int limit, int skip);
 
     /// <summary>
-    /// Searches files by a given text/word tthat should be present within the content,
+    /// Searches files by a given text/word that should be present within the content,
     /// applies also the given attribute values to be used as filter,
     /// processes sorting and paging and returns the keys of that files.
     /// </summary>
@@ -83,7 +89,7 @@ namespace System.IO.Abstraction {
     /// For attributes of type 'AreaPath' the MINIMATCH/GLOB pattern is used (expressions like '**/abc*').
     /// This alles non-recurcive filtering for 1 level: 'my/area/*' will only return direct childs
     /// </param>
-    /// <param name="sortingAttributeName"></param>
+    /// <param name="sortingAttributeName">can contain the prefix ^ for desc-order</param>
     /// <param name="limit"></param>
     /// <param name="skip"></param>
     string[] SearchFilesByContent(string textWithinContent, Dictionary<string, string> attributesToFilter, string sortingAttributeName, int limit, int skip);

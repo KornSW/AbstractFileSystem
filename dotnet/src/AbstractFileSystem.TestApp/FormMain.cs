@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.IO.Abstraction;
 using System.Net.Http;
 using System.Web.UJMW;
@@ -17,7 +18,7 @@ namespace AFS.TestApp {
       txtAccessToken.Leave += this.TxtPathOrUrl_Leave;
 
       //TODO: stattdessen connection aus registry laden und falls da ReinitConnection aufrufen
-      txtPathOrUrl.Text = "C:\\";
+      txtPathOrUrl.Text = "C:\\Temp";
       this.ReinitConnection();
 
     }
@@ -34,28 +35,27 @@ namespace AFS.TestApp {
 
     private HttpClient _HttpClient = null;
 
-    private void ReinitConnection() {
+    private void ReinitConnection(bool force = false) {
+      if (!force && this.afsExplorer.DataSource != null) {
+        return;
+      }
+      this.Text = "AFS Testapp";
       try {
         if (txtPathOrUrl.Text.StartsWith("http")) {
-          if (_HttpClient == null) {
-            _HttpClient = new HttpClient();
-          }
-          _HttpClient.DefaultRequestHeaders.Clear();
-          if (!string.IsNullOrWhiteSpace(txtAccessToken.Text)) {
-            _HttpClient.DefaultRequestHeaders.Add("Authorization", txtAccessToken.Text);
-          }
-          this.afsExplorer.DataSource = DynamicClientFactory.CreateInstance<IAfsRepository>(
-            _HttpClient,
-            () => txtPathOrUrl.Text
-          );
+          this.afsExplorer.DataSource = new AfsHttpRepositoryConnector(txtPathOrUrl.Text, txtAccessToken.Text);
+          this.Text = $"{this.Text} ({this.afsExplorer.DataSource.GetOriginIdentity()})";
         }
         else if (txtPathOrUrl.Text.Contains("\\")) {
-          this.afsExplorer.DataSource = new AfsLocalRepository(txtPathOrUrl.Text);
+          string pth = txtPathOrUrl.Text;
+          if (!Path.IsPathRooted(pth)) {
+            pth = Path.GetFullPath(pth);
+          }
+          this.afsExplorer.DataSource = new AfsLocalRepository(pth);
+          this.Text = $"{this.Text} ({this.afsExplorer.DataSource.GetOriginIdentity()})";
         }
         else {
           this.afsExplorer.DataSource = null;
         }
-
         //TODO: on success connection abspeichern in registry
       }
       catch (Exception ex) {
@@ -65,11 +65,16 @@ namespace AFS.TestApp {
     }
 
     private void FormMain_Load(object sender, EventArgs e) {
-
     }
 
     private void txtPathOrUrl_TextChanged(object sender, EventArgs e) {
-
+      this.afsExplorer.DataSource = null;
     }
+
+    private void txtAccessToken_TextChanged(object sender, EventArgs e) {
+      this.afsExplorer.DataSource = null;
+    }
+
   }
+
 }

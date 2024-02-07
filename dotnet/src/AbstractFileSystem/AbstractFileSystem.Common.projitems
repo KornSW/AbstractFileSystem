@@ -10,9 +10,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)%28import from GitHub%29\Minimatcher.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)..\..\..\..\..\%28git%29\AbstractFileSystem\dotnet\src\AbstractFileSystem\Connectors\AfsHttpRepositoryConnector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Connectors\AfsHttpRepositoryConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AfsLocalRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AfsExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pipes\AfsAggregationPipe.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pipes\AfsEncryptionPipe.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pipes\AfsCachingPipe.cs" />
   </ItemGroup>

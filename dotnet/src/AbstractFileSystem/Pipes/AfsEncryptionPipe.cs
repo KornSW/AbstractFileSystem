@@ -1,119 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace System.IO.Abstraction {
 
+  //TODO: implementation planned...
+
+  ///// <summary>
+  ///// Applies an 'on-the-fly' Encryption/Decryption-Feature when accessing an AFS repository
+  ///// </summary>
   //public class AfsEncryptionPipe : IAfsRepository {
 
-  //  public AfsAttributeDescriptor[] GetAvailableAttributes() {
-  //    return new AfsAttributeDescriptor[] {
-  //      new AfsAttributeDescriptor {
-  //        AttributeName = "Id",
-  //        AttributeType = AfsAttributeType.String
-  //      }
-  //    };
+  //  /// <summary> </summary>
+  //  /// <param name="innerRepository">An AFS Repsitory that contains the files to be accessed.</param>
+  //  /// <param name="encryptionKey">The key that should be used to encrypt/decrypt files</param>
+  //  /// <param name="attributesToEncrypt">Names of attributes, for which the VALUES should also be encrypted.</param>
+  //  public AfsEncryptionPipe(IAfsRepository innerRepository, string encryptionKey, string[] attributesToEncrypt = null) {
+  //    ...
   //  }
 
-  //  public AfsRepositoryCapabilities GetCapabilities() {
-  //    return new AfsRepositoryCapabilities { };
+  //[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+  //private IAfsRepository _InnerRepository;
+
+  //public IAfsRepository InnerRepository {
+  //  get {
+  //    return _InnerRepository;
   //  }
+  //}
 
-  //  #region " pre-checks for certain file operations "
-
-  //  public bool CanDelete(string fileKeys) {
-  //    return false;
-  //  }
-
-  //  public bool CanDownloadContent(string fileKeys) {
-  //    return false;
-  //  }
-
-  //  public bool CanOverwrite(string fileKeys) {
-  //    return false;
-  //  }
-
-  //  public bool CanUpdateAttributes(string fileKeys) {
-  //    return false;
-  //  }
-
-  //  #endregion
-
-  //  public string[] ListAllFiles(string sortingAttributeName, int limit, int skip) {
-  //    return null;
-  //  }
-
-  //  public string[] SearchFilesByAttribute(Dictionary<string, string> attributesToFilter, string sortingAttributeName, int limit, int skip) {
-  //    return null;
-  //  }
-
-  //  public string[] SearchFilesByContent(string textWithinContent, Dictionary<string, string> attributesToFilter, string sortingAttributeName, int limit, int skip) {
-  //    return null;
-  //  }
-
-  //  public Dictionary<string, string>[] LoadFileAttributes(string[] fileKeys, string[] includedAttributeNames) {
-  //    return null;
-  //  }
-
-  //  public bool CheckFileExists(string fileKey) {
-  //    return false;
-  //  }
-
-  //  public bool UpdateKey(string oldFileKey, string newFileKey) {
-  //    return false;
-  //  }
-
-  //  public bool UpdateAttributes(Dictionary<string, string> attributes) {
-  //    return false;
-  //  }
-
-  //  public string RequestOtpForDownloadContent(string fileKey) {
-  //    return null;
-  //  }
-
-  //  public string RequestOtpForFileOverwrite(string fileKey) {
-  //    return null;
-  //  }
-
-  //  public string RequestOtpForNewFileCreation(Dictionary<string, string> attributeValues) {
-  //    return null;
-  //  }
-
-  //  public string CreateNewFile(string otp, byte[] content, string newMimeType) {
-  //    return null;
-  //  }
-
-  //  public byte[] DownloadFileContent(string otp) {
-  //    return null;
-  //  }
-
-  //  public bool TryOverwriteFile(string otp, byte[] content, string newMimeType) {
-  //    return false;
-  //  }
-
-  //  public bool TryDeleteFile(string key) {
-  //    return false;
-  //  }
-
-  //  public byte[] LoadThumnail(string fileKey, int sizePx, bool square) {
-  //    return null;
-  //  }
-
-  //  #region " ManagedValueRange "
-
-  //  public string[] GetValueRange(string attributeName, string filter, out bool isReadOnly) {
-  //    isReadOnly = true;
-  //    return null;
-  //  }
-
-  //  public bool TryAddToValueRange(string attributeName, string valueToAdd) {
-  //    return false;
-  //  }
-
-  //  public bool TryRemoveFromValueRange(string attributeName, string valueToRemove) {
-  //    return false;
-  //  }
-
-  //  #endregion
+  //public string GetOriginIdentity() {
+  //  return _InnerRepository.GetOriginIdentity();
+  //}
 
   //}
 

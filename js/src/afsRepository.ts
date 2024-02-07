@@ -1,8 +1,6 @@
 
-export class AfsRepository {
+export interface IAfsRepository {
 
-
-  public ThisIsADemo: string | null = null;
-
+  GetOriginIdentity(): string;
 
 }

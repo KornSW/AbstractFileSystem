@@ -1,5 +1,5 @@
 {
-  "name": "abstractfilesystem-repositorycontract",
+  "name": "kornsw-abstractfilesystem-repositorycontract",
   "version": "1.0.0",
   "description": "KornSW.AbstractFileSystem.RepositoryContract",
   "main": "lib/index.js",

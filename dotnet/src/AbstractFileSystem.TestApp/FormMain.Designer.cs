@@ -69,6 +69,7 @@ namespace AFS.TestApp {
       txtAccessToken.Name = "txtAccessToken";
       txtAccessToken.Size = new System.Drawing.Size(162, 23);
       txtAccessToken.TabIndex = 1;
+      txtAccessToken.TextChanged += this.txtAccessToken_TextChanged;
       // 
       // panelTop
       // 

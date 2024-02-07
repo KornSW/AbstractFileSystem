@@ -53,14 +53,33 @@ namespace AbstractFileSystem.TestApp {
     public void Reload() {
 
       fileList.Items.Clear();
-      if(this.DataSource == null) {
+      if (this.DataSource == null) {
         return;
       }
 
-     string[] fileKeys  = this.DataSource.ListAllFiles(AfsWellknownAttributeNames.FileName, 100, 0);
-     foreach (string fileKey in fileKeys) {
-        fileList.Items.Add(fileKey);
-     }
+
+
+      var attripDescriptors = this.DataSource.GetAvailableAttributes();
+      string[] attribNames = attripDescriptors.Select((a)=>a.AttributeName).ToArray();
+
+      fileList.Columns.Clear();
+      foreach (var attripDescriptor in attripDescriptors) {
+        var col =  fileList.Columns.Add(attripDescriptor.AttributeName);
+        col.Width = 120;
+      
+      }
+      fileList.Columns[0].Width = 0; //hide KEY colum
+
+      string[] fileKeys = this.DataSource.ListAllFiles("^" + AfsWellknownAttributeNames.FileSizeBytes, 100, 0);
+      var fas = this.DataSource.LoadFileAttributes(fileKeys, attribNames);
+
+      foreach (var fa in fas) {
+        var item = fileList.Items.Add(fa[attribNames[0]]);
+        for (int i = 1; i < fa.Count; i++) {
+          item.SubItems.Add(fa[attribNames[i]]);
+        }
+        item.ToolTipText = fa[attribNames[0]];//key
+      }
 
     }
 

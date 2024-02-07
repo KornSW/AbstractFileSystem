@@ -47,10 +47,10 @@
       aToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       bToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       toolbar = new System.Windows.Forms.ToolStrip();
-      toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-      toolStripButton2 = new System.Windows.Forms.ToolStripButton();
       btnReload = new System.Windows.Forms.ToolStripButton();
       toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+      toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+      toolStripButton2 = new System.Windows.Forms.ToolStripButton();
       ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
       splitContainer1.Panel1.SuspendLayout();
       splitContainer1.Panel2.SuspendLayout();
@@ -70,8 +70,8 @@
       // 
       // splitContainer1.Panel1
       // 
-      splitContainer1.Panel1.Controls.Add(areaTree);
       splitContainer1.Panel1.Controls.Add(panSearch);
+      splitContainer1.Panel1.Controls.Add(areaTree);
       // 
       // splitContainer1.Panel2
       // 
@@ -263,6 +263,21 @@
       toolbar.TabIndex = 0;
       toolbar.Text = "toolStrip1";
       // 
+      // btnReload
+      // 
+      btnReload.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      btnReload.Image = (System.Drawing.Image)resources.GetObject("btnReload.Image");
+      btnReload.ImageTransparentColor = System.Drawing.Color.Magenta;
+      btnReload.Name = "btnReload";
+      btnReload.Size = new System.Drawing.Size(23, 22);
+      btnReload.Text = "toolStripButton4";
+      btnReload.Click += this.btnReload_Click;
+      // 
+      // toolStripSeparator1
+      // 
+      toolStripSeparator1.Name = "toolStripSeparator1";
+      toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+      // 
       // toolStripButton1
       // 
       toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -282,21 +297,6 @@
       toolStripButton2.Size = new System.Drawing.Size(23, 22);
       toolStripButton2.Text = "toolStripButton2";
       toolStripButton2.Click += this.toolStripButton2_Click;
-      // 
-      // btnReload
-      // 
-      btnReload.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      btnReload.Image = (System.Drawing.Image)resources.GetObject("btnReload.Image");
-      btnReload.ImageTransparentColor = System.Drawing.Color.Magenta;
-      btnReload.Name = "btnReload";
-      btnReload.Size = new System.Drawing.Size(23, 22);
-      btnReload.Text = "toolStripButton4";
-      btnReload.Click += this.btnReload_Click;
-      // 
-      // toolStripSeparator1
-      // 
-      toolStripSeparator1.Name = "toolStripSeparator1";
-      toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
       // 
       // AfsExplorer
       // 

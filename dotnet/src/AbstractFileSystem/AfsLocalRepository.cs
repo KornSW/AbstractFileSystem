@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Utils;
 
 namespace System.IO.Abstraction {
 
+  [DebuggerDisplay("{InfoString} (AfsLocalRepository)")]
   public class AfsLocalRepository : IAfsRepository {
 
     private string _RootDir;
@@ -44,6 +47,17 @@ namespace System.IO.Abstraction {
         CanLoadThumnails = false,
         CanSearchFilesByContent = false
       };
+    }
+
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    internal virtual string InfoString {
+      get {
+        return this.GetOriginIdentity();
+      }
+    }
+
+    public string GetOriginIdentity() {
+      return $"fs://{Environment.MachineName}/{_RootDir.Replace(Path.DirectorySeparatorChar,'/')}";
     }
 
     public AfsAttributeDescriptor[] GetAvailableAttributes() {
@@ -110,7 +124,7 @@ namespace System.IO.Abstraction {
       IEnumerable<string> allFiles;
       if (string.IsNullOrWhiteSpace(directoryMatch)) {
         var di = new DirectoryInfo(rootDir);
-        allFiles = di.GetFiles(fileNameMatch, SearchOption.AllDirectories).Select((f) => f.FullName);
+        allFiles = this.GetFileInfosRecursive(di, fileNameMatch);
       } 
       else if (!directoryMatch.Contains("*")) {
         var di = new DirectoryInfo(Path.Combine(rootDir, directoryMatch));//TODO: remove leading /
@@ -118,14 +132,43 @@ namespace System.IO.Abstraction {
       }
       else { //full MINIMATCH/GLOB
         var di = new DirectoryInfo(rootDir);
-
-        //TODO: manuelle rekursion, da manchmal das dateisystem access-dienied exceptions schmeisst...
-        allFiles = di.GetFiles(fileNameMatch, SearchOption.AllDirectories).Select((f) => f.FullName);
+        allFiles = this.GetFileInfosRecursive(di, fileNameMatch);
         allFiles = Minimatcher.FilterMulti(allFiles, directoryMatch + "/" + fileNameMatch);
       }
 
       foreach (var file in allFiles) {
-        yield return file;//.Substring(rootDir.Length - 1).Replace(Path.DirectorySeparatorChar, '/');
+        yield return file;
+      }
+
+    }
+
+    private IEnumerable<string> GetFileInfosRecursive(DirectoryInfo dirInfo, string fileNameMatch) {
+
+      IEnumerable<FileInfo> files = null;
+      try {
+        files = dirInfo.GetFiles(fileNameMatch);
+      }
+      catch {
+      }
+      if(files != null) {
+        foreach (var file in files.Select((f) => f.FullName)) {
+          yield return file;
+      
+        }
+      }
+
+      IEnumerable<DirectoryInfo> subDirInfos = null;
+      try {
+        subDirInfos = dirInfo.GetDirectories();
+      }
+      catch {
+      }
+      if (files != null) { 
+        foreach (var subDirInfo in subDirInfos) {
+          foreach (var file in this.GetFileInfosRecursive(subDirInfo, fileNameMatch)) {
+            yield return file;
+          }
+        }
       }
 
     }
@@ -162,16 +205,38 @@ namespace System.IO.Abstraction {
       IEnumerable<string> fileFullNames = this.EnumerateFileFullNames(_RootDir, string.Empty, "*");
 
       //TEMP:
-      string[] dbg = fileFullNames.ToArray(); 
+      //string[] dbg = fileFullNames.ToArray(); 
 
-      var fileAttribs = this.BuildAttributes(fileFullNames, sortingAttributeName);
-      return (
-        fileAttribs.OrderBy((a) => a[sortingAttributeName]).
-        Skip(skip).
-        Take(limit).
-        Select((a)=> a[AfsWellknownAttributeNames.FileFullName]).
-        ToArray()
-      );
+
+      if (sortingAttributeName.StartsWith("^")) {
+
+        var fileAttribs = this.BuildAttributes(
+          fileFullNames, sortingAttributeName.Substring(1), AfsWellknownAttributeNames.FileFullName
+        );
+
+        return (
+          fileAttribs.OrderByDescending((a) => a[sortingAttributeName.Substring(1)]).
+          Skip(skip).
+          Take(limit).
+          Select((a)=> a[AfsWellknownAttributeNames.FileFullName]).
+          ToArray()
+        );
+
+      }
+      else {
+
+        var fileAttribs = this.BuildAttributes(
+          fileFullNames, sortingAttributeName, AfsWellknownAttributeNames.FileFullName
+        );
+
+        return (
+          fileAttribs.OrderBy((a) => a[sortingAttributeName]).
+          Skip(skip).
+          Take(limit).
+          Select((a)=> a[AfsWellknownAttributeNames.FileFullName]).
+          ToArray()
+        );
+      }
     }
 
     private bool EvaluateAttribFilter(IDictionary<string,string> attribs, IDictionary<string, string> filter) {
