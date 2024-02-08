@@ -10,24 +10,24 @@ namespace System.IO.Abstraction {
 
     public static void CopyFile(this IAfsRepository sourceRepo, string fileKey, IAfsRepository targetRepo) {
 
-      string otp = sourceRepo.RequestOtpForDownloadContent(fileKey);
-      byte[] fileContent = sourceRepo.DownloadFileContent(otp);
+      //string otp = sourceRepo.RequestOtpForDownloadContent(fileKey);
+      //byte[] fileContent = sourceRepo.DownloadFileContent(otp);
 
-      var creationAttribs = targetRepo.CreateAttributesTemplate();
-      var sourceAttribs = sourceRepo.LoadFileAttributes(
-        new string[] { fileKey }, creationAttribs.Keys.ToArray()
-      ).Single();
+      //var creationAttribs = targetRepo.CreateAttributesTemplate();
+      //var sourceAttribs = sourceRepo.LoadFileAttributes(
+      //  new string[] { fileKey }, creationAttribs.Keys.ToArray()
+      //).Single();
 
-      foreach (string attribName in creationAttribs.Keys) {
-        if(sourceAttribs.TryGetValue( attribName, out var value)) {
-          creationAttribs[attribName] = value;
-        }
-      }
+      //foreach (string attribName in creationAttribs.Keys) {
+      //  if(sourceAttribs.TryGetValue( attribName, out var value)) {
+      //    creationAttribs[attribName] = value;
+      //  }
+      //}
 
-      string creationOtp = targetRepo.RequestOtpForNewFileCreation(creationAttribs);
-      string newlyCreatedKey = targetRepo.CreateNewFile(
-        creationOtp, fileContent, sourceAttribs[AfsWellknownAttributeNames.MimeType]
-      );
+      //string creationOtp = targetRepo.RequestOtpForNewFileCreation(creationAttribs);
+      //string newlyCreatedKey = targetRepo.CreateNewFile(
+      //  creationOtp, fileContent, sourceAttribs[AfsWellknownAttributeNames.MimeType]
+      //);
 
     }
 

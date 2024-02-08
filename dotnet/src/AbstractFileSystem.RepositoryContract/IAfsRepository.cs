@@ -158,28 +158,30 @@ namespace System.IO.Abstraction {
     /// downloads the content of a file
     /// </summary>
     /// <param name="otp"></param>
+    /// <param name="fileName"></param>
+    /// <param name="fileContentType"></param>
     /// <returns></returns>
-    byte[] DownloadFileContent(string otp);
+    Stream DownloadFileContent(string otp, out string fileName, out string fileContentType);
 
     /// <summary>
     /// Uploads content for a new file and returns the key of the file on success.
     /// If the file could not be created the return value will be null.
     /// </summary>
     /// <param name="otp"></param>
-    /// <param name="content"></param>
-    /// <param name="newMimeType"></param>
+    /// <param name="file"></param>
+    /// <param name="fileContentType"></param>
     /// <returns></returns>
-    string CreateNewFile(string otp, byte[] content, string newMimeType);
+    string CreateNewFile(string otp, Stream file, string fileContentType);
 
     /// <summary>
     /// Uploads new content for an exisiting file and returns true on success.
     /// If the file could not be updated/overwritten the return value will be false.
     /// </summary>
     /// <param name="otp"></param>
-    /// <param name="content"></param>
-    /// <param name="newMimeType"></param>
+    /// <param name="file"></param>
+    /// <param name="fileContentType"></param>
     /// <returns></returns>
-    bool TryOverwriteFile(string otp, byte[] content, string newMimeType);
+    bool TryOverwriteFile(string otp, Stream file, string fileContentType);
 
     /// <summary>
     /// deletes a file by its key and returns true on success

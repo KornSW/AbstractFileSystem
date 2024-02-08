@@ -330,15 +330,17 @@ namespace System.IO.Abstraction {
       return null;
     }
 
-    public string CreateNewFile(string otp, byte[] content, string newMimeType) {
+    public Stream DownloadFileContent(string otp, out string fileName, out string fileContentType) {
+      fileName = "dummy";
+      fileContentType = "dummy";
       return null;
     }
 
-    public byte[] DownloadFileContent(string otp) {
+    public string CreateNewFile(string otp, Stream file, string fileContentType) {
       return null;
     }
 
-    public bool TryOverwriteFile(string otp, byte[] content, string newMimeType) {
+    public bool TryOverwriteFile(string otp, Stream file, string fileContentType){
       return false;
     }
 

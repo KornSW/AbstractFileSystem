@@ -124,17 +124,16 @@ namespace System.IO.Abstraction {
       return _InnerRepository.RequestOtpForNewFileCreation(attributeValues);
     }
 
-    public string CreateNewFile(string otp, byte[] content, string newMimeType) {
-      return _InnerRepository.CreateNewFile(otp, content, newMimeType);
+    public Stream DownloadFileContent(string otp, out string fileName, out string fileContentType) {
+      return _InnerRepository.DownloadFileContent(otp, out fileName, out fileContentType);
     }
 
-    public byte[] DownloadFileContent(string otp) {
-      //TODO: one of the first places to integrate the cache
-      return _InnerRepository.DownloadFileContent(otp);
+    public string CreateNewFile(string otp, Stream file, string fileContentType) {
+      return _InnerRepository.CreateNewFile(otp, file, fileContentType);
     }
 
-    public bool TryOverwriteFile(string otp, byte[] content, string newMimeType) {
-      return _InnerRepository.TryOverwriteFile(otp, content, newMimeType);
+    public bool TryOverwriteFile(string otp, Stream file, string fileContentType) {
+      return _InnerRepository.TryOverwriteFile(otp, file, fileContentType);
     }
 
     public bool TryDeleteFile(string fileKey) {
