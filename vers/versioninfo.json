@@ -1,13 +1,13 @@
 {
-  "currentVersion": "1.0.1",
-  "currentVersionWithSuffix": "1.0.1",
+  "currentVersion": "2.0.0",
+  "currentVersionWithSuffix": "2.0.0",
   "releaseType": "official",
-  "previousVersion": "1.0.0",
-  "changeGrade": "patch",
-  "currentMajor": 1,
+  "previousVersion": "1.0.1",
+  "changeGrade": "major",
+  "currentMajor": 2,
   "currentMinor": 0,
-  "currentPatch": 1,
-  "versionDateInfo": "2024-02-09",
-  "versionTimeInfo": "06:08:33",
-  "versionNotes": "- Added new Solution Structure - Now ready to RESTART in 2024\n"
+  "currentPatch": 0,
+  "versionDateInfo": "2024-02-25",
+  "versionTimeInfo": "09:44:31",
+  "versionNotes": "- Adjusted some contract signatures to support block wise up/downloads  (breaking Change)\n"
 }

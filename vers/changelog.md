@@ -6,7 +6,13 @@ This files contains a version history including all changes relevant for semanti
 
 ## Upcoming Changes
 
-* Adjusted some contract signatures to support block wise up/downloads  (**breaking Change**)
+*(none)*
+
+
+
+## v 2.0.0
+released **2024-02-25**, including:
+ - Adjusted some contract signatures to support block wise up/downloads  (**breaking Change**)
 
 
 
