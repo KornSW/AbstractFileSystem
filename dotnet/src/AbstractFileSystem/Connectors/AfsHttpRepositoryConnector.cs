@@ -11,25 +11,10 @@ namespace System.IO.Abstraction {
   [DebuggerDisplay("{InfoString} (AfsHttpRepositoryConnector)")]
   public class AfsHttpRepositoryConnector : AfsCachingPipe {
 
-    private static IAfsRepository BuildUjmwClient(string endpointUrl, string httpAuthHeader = null) {
-      var hc = new HttpClient();
-      if (!string.IsNullOrWhiteSpace(httpAuthHeader)) {
-        hc.DefaultRequestHeaders.Add("Authorization", httpAuthHeader);
-      }
-      return BuildUjmwClient(endpointUrl, hc);
-    }
-
-    private static IAfsRepository BuildUjmwClient(string endpointUrl, HttpClient hc) {
-      return DynamicClientFactory.CreateInstance<IAfsRepository>(hc, () => endpointUrl);
-    }
     public AfsHttpRepositoryConnector(string endpointUrl, string httpAuthHeader = null, long cacheSizeBytes = 0) : base(
-      BuildUjmwClient(endpointUrl, httpAuthHeader), BuildIdentityRelatedCacheDir(endpointUrl), cacheSizeBytes
-    ) {
-      _EndpointUrl = endpointUrl;
-    }
-
-    public AfsHttpRepositoryConnector(string endpointUrl, HttpClient httpClient, long cacheSizeBytes = 0) : base(
-      BuildUjmwClient(endpointUrl, httpClient), BuildIdentityRelatedCacheDir(endpointUrl), cacheSizeBytes
+      DynamicClientFactory.CreateInstance<IAfsRepository>(endpointUrl, () => httpAuthHeader),
+      BuildIdentityRelatedCacheDir(endpointUrl),
+      cacheSizeBytes
     ) {
       _EndpointUrl = endpointUrl;
     }

@@ -131,57 +131,98 @@ namespace System.IO.Abstraction {
     Dictionary<string, string> UpdateAttributes(Dictionary<string, string> attributes);
 
     /// <summary>
-    /// returns an one-time-password (OTP) that is required for using the 'CreateNewFile' method.
-    /// or returns null if the given attributes are incomplete / creation is not possible
+    /// Initiates the Content-Access-Operation to create a new File.
+    /// Therefore an one-time-password ('contentPushOtp') will be returned, which is required for using the 'TryPushFileContent' method.
+    /// An empty file will be created immediately when calling this method.
+    /// As long as the 'TryPushFileContent' hasnt been called with willContinuePush=false (or 'ContentOperationComplete'),
+    /// the Content-Access-Operation will represent an 'lock' which prohibits any write or read access to that file for other parties.
     /// </summary>
     /// <param name="attributeValues">All attributes that are 'RequiredOnCreation' (can be enumerated using GetAvailableAttributes)</param>
-    /// <returns></returns>
-    string RequestOtpForNewFileCreation(Dictionary<string, string> attributeValues);
+    /// <param name="contentType">The Content-Type (also known as MIME-Type) of the content that will be pushed.</param>
+    /// <param name="contentPushOtp">Returns a one-time-password for calling 'TryPushFileContent'</param>
+    /// <param name="intendedFileKeyOnSuccess">Returns the fileKey under which the file will be accessable when it has been written.</param>
+    /// <returns>Returns true on success, or false if the operation is not permitted.</returns>
+    bool TryBeginCreateNewFile(Dictionary<string, string> attributeValues, string contentType, out string contentPushOtp, out string intendedFileKeyOnSuccess);
 
     /// <summary>
-    /// returns an one-time-password (OTP) that is required for using the 'TryOverwriteFile' method
-    /// or returns null if the given fileKey does not exist / overwrite is not possible
+    /// Initiates the Content-Access-Operation to overwrite an exisiting File.
+    /// Therefore an one-time-password ('contentPushOtp') will be returned, which is required for using the 'TryPushFileContent' method.
+    /// The target file will be truncated immediately when calling this method.
+    /// As long as the 'TryPushFileContent' hasnt been called with willContinuePush=false (or 'ContentOperationComplete'),
+    /// the Content-Access-Operation will represent an 'lock' which prohibits any write or read access to that file for other parties.
     /// </summary>
-    /// <param name="fileKey"></param>
-    /// <returns></returns>
-    string RequestOtpForFileOverwrite(string fileKey);
+    /// <param name="fileKey">The key of the target file for which the content should be overwritten</param>
+    /// <param name="contentType">The Content-Type (also known as MIME-Type) of the content that will be pushed.</param>
+    /// <param name="contentPushOtp">Returns a one-time-password for calling 'TryPushFileContent'</param>
+    /// <returns>Returns true on success, or false if the operation is not permitted, the file does not exist or the file is currently locked by another Content-Access-Operation.</returns>
+    bool TryBeginOverwriteFile(string fileKey, string contentType, out string contentPushOtp);
 
     /// <summary>
-    /// returns an one-time-password (OTP) that is required for using the 'DownloadFileContent' method
-    /// or returns null if content download is not possible
+    /// Initiates the Content-Access-Operation to append additional content for an exisiting File.
+    /// Therefore an one-time-password ('contentPushOtp') will be returned, which is required for using the 'TryPushFileContent' method.
+    /// As long as the 'TryPushFileContent' hasnt been called with willContinuePush=false (or 'ContentOperationComplete'),
+    /// the Content-Access-Operation will represent an 'lock' which prohibits any write or read access to that file for other parties.
     /// </summary>
-    /// <param name="fileKey"></param>
-    /// <returns></returns>
-    string RequestOtpForDownloadContent(string fileKey);
+    /// <param name="fileKey">The key of the target file for which the content should be appended</param>
+    /// <param name="contentPushOtp">Returns a one-time-password for calling 'TryPushFileContent'</param>
+    /// <returns>Returns true on success, or false if the operation is not permitted, the file does not exist or the file is currently locked by another Content-Access-Operation.</returns>
+    bool TryBeginAppendFileContent(string fileKey, out string contentPushOtp);
 
     /// <summary>
-    /// downloads the content of a file
+    /// Initiates the Content-Access-Operation to load the contents of a file.
+    /// Therefore an one-time-password ('contentPullOtp') will be returned, which is required for using the 'TryPullFileContent' method.
+    /// As long as the 'TryPullFileContent' hasnt been called with willContinuePull=false (or 'ContentOperationComplete'),
+    /// the Content-Access-Operation will represent an 'lock' which prohibits any write access to that file for other parties.
     /// </summary>
-    /// <param name="otp"></param>
-    /// <param name="fileName"></param>
-    /// <param name="fileContentType"></param>
-    /// <returns></returns>
-    Stream DownloadFileContent(string otp, out string fileName, out string fileContentType);
+    /// <param name="fileKey">The key of the file to be accessed.</param>
+    /// <param name="contentType">Returns the Content-Type (also known as MIME-Type) of this file.</param>
+    /// <param name="contentSizeBytes">Return the size (number of bytes) of the file content.</param>
+    /// <param name="contentPullOtp">Returns a one-time-password for calling 'TryPullFileContent'</param>
+    /// <returns>Returns true on success, or false if the operation is not permitted, the file does not exist or the file is currently locked by another Content-Access-Operation.</returns>
+    bool TryBeginPullFileContent(string fileKey, out string contentType, out long contentSizeBytes, out string contentPullOtp);
 
     /// <summary>
-    /// Uploads content for a new file and returns the key of the file on success.
-    /// If the file could not be created the return value will be null.
+    /// This method will release exisiting file locks fo not yet completet Content-Access-Operations.
+    /// It should be call when having retrieved an 'contentPushOtp' or 'contentPullOtp' which wont be used anymore.
     /// </summary>
-    /// <param name="otp"></param>
-    /// <param name="file"></param>
-    /// <param name="fileContentType"></param>
-    /// <returns></returns>
-    string CreateNewFile(string otp, Stream file, string fileContentType);
+    /// <param name="contentPushOrPullOtp">The current OTP (one-time-password) which should be revoked.</param>
+    void ContentOperationComplete(string contentPushOrPullOtp);
 
     /// <summary>
-    /// Uploads new content for an exisiting file and returns true on success.
-    /// If the file could not be updated/overwritten the return value will be false.
+    /// Pushes content (= a block of bytes) into the file which is addressed implicitely via 'contentPushOtp' (Handle). 
     /// </summary>
-    /// <param name="otp"></param>
-    /// <param name="file"></param>
-    /// <param name="fileContentType"></param>
-    /// <returns></returns>
-    bool TryOverwriteFile(string otp, Stream file, string fileContentType);
+    /// <param name="contentPushOtp">
+    /// The current OTP (one-time-password) which has been retrieved by calling
+    /// 'TryBeginCreateNewFile', 'TryBeginOverwriteFile' or 'TryBeginAppendFileContent'.
+    /// </param>
+    /// <param name="content">the new content, to be appended</param>
+    /// <param name="willContinuePush">
+    /// IMPORTANT: when providing false, the Content-Access-Operation will be completed automatically.
+    /// (like calling the 'ContentOperationComplete' method). You should provide true, if another call
+    /// of the 'TryPushFileContent' will follow immediately - this will keep the file-lock AND assign
+    /// a mew 'contentPushOtp' over the by-ref param (this can easy be called from via loop).
+    /// </param>
+    /// <returns>Will return false, if the OTP (one-time-password) has expired or was already used</returns>
+    bool TryPushFileContent(ref string contentPushOtp, byte[] content, bool willContinuePush);
+
+    /// <summary>
+    /// Pulls content (= a block of bytes) from the file which is addressed implicitely via 'contentPullOtp' (Handle). 
+    /// </summary>
+    /// <param name="contentPullOtp">
+    /// The current OTP (one-time-password) which has been retrieved by calling 'TryBeginPullFileContent'.
+    /// </param>
+    /// <param name="content">Returns the retrieved block of content</param>
+    /// <param name="willContinuePull">
+    /// IMPORTANT: when providing false, the Content-Access-Operation will be completed automatically.
+    /// (like calling the 'ContentOperationComplete' method). You should provide true, if another call
+    /// of the 'TryPullFileContent' will follow immediately - this will keep the file-lock AND assign
+    /// a mew 'contentPullOtp' over the by-ref param (this can easy be called from via loop).
+    /// </param>
+    /// <param name="byteOffset">Start-postion (0 based index) to address that block of bytes to request</param>
+    /// <param name="byteCount">Number of bytes (=size of the block) to request.
+    /// To retrieve the whole content within one request, just provide the 'contentSizeBytes' from the 'TryBeginPullFileContent'-call.</param>
+    /// <returns>Will return false, if the OTP (one-time-password) has expired or was already used</returns>
+    bool TryPullFileContent(ref string contentPullOtp, out byte[] content, bool willContinuePull, long byteOffset, long byteCount);
 
     /// <summary>
     /// deletes a file by its key and returns true on success

@@ -112,28 +112,32 @@ namespace System.IO.Abstraction {
       return _InnerRepository.UpdateAttributes(attributes);
     }
 
-    public string RequestOtpForDownloadContent(string fileKey) {
-      return _InnerRepository.RequestOtpForDownloadContent(fileKey);
+    public bool TryBeginCreateNewFile(Dictionary<string, string> attributeValues, string contentType, out string contentPushOtp, out string intendedFileKeyOnSuccess) {
+      return _InnerRepository.TryBeginCreateNewFile(attributeValues, contentType, out contentPushOtp , out intendedFileKeyOnSuccess);
     }
 
-    public string RequestOtpForFileOverwrite(string fileKey) {
-      return _InnerRepository.RequestOtpForFileOverwrite(fileKey);
+    public bool TryBeginOverwriteFile(string fileKey, string contentType, out string contentPushOtp) {
+      return _InnerRepository.TryBeginOverwriteFile(fileKey, contentType, out contentPushOtp);
     }
 
-    public string RequestOtpForNewFileCreation(Dictionary<string, string> attributeValues) {
-      return _InnerRepository.RequestOtpForNewFileCreation(attributeValues);
+    public bool TryBeginAppendFileContent(string fileKey, out string contentPushOtp) {
+      return _InnerRepository.TryBeginAppendFileContent(fileKey, out contentPushOtp);
     }
 
-    public Stream DownloadFileContent(string otp, out string fileName, out string fileContentType) {
-      return _InnerRepository.DownloadFileContent(otp, out fileName, out fileContentType);
+    public bool TryBeginPullFileContent(string fileKey, out string contentType, out long contentSizeBytes, out string contentPullOtp) {
+      return _InnerRepository.TryBeginPullFileContent(fileKey, out contentType,out  contentSizeBytes, out contentPullOtp);
     }
 
-    public string CreateNewFile(string otp, Stream file, string fileContentType) {
-      return _InnerRepository.CreateNewFile(otp, file, fileContentType);
+    public void ContentOperationComplete(string contentPushOrPullOtp) {
+      _InnerRepository.ContentOperationComplete(contentPushOrPullOtp);
     }
 
-    public bool TryOverwriteFile(string otp, Stream file, string fileContentType) {
-      return _InnerRepository.TryOverwriteFile(otp, file, fileContentType);
+    public bool TryPushFileContent(ref string contentPushOtp, byte[] content, bool willContinuePush) {
+      return _InnerRepository.TryPushFileContent(ref contentPushOtp, content, willContinuePush);
+    }
+
+    public bool TryPullFileContent(ref string contentPullOtp, out byte[] content, bool willContinuePull, long byteOffset, long byteCount) {
+      return _InnerRepository.TryPullFileContent(ref contentPullOtp, out content, willContinuePull, byteOffset, byteCount);
     }
 
     public bool TryDeleteFile(string fileKey) {

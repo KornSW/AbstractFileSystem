@@ -7,6 +7,7 @@ namespace System.IO.Abstraction {
     public bool CanLoadThumnails { get; set; } = false;
     public bool CanCreateNewFile { get; set; } = false;
     public bool CanCreateOverwriteFile { get; set; } = false;
+    public bool CanAppendContent { get; set; } = false;
     public bool CanDeleteFile { get; set; } = false;
     public bool CanDownloadFileContent { get; set; } = false; 
   }

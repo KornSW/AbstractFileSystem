@@ -318,30 +318,42 @@ namespace System.IO.Abstraction {
       return null;
     }
 
-    public string RequestOtpForDownloadContent(string fileKey) {
-      return null;
+    public bool TryBeginCreateNewFile(
+      Dictionary<string, string> attributeValues, string contentType,
+      out string contentPushOtp, out string intendedFileKeyOnSuccess
+    ) {
+
+      throw new NotImplementedException();
     }
 
-    public string RequestOtpForFileOverwrite(string fileKey) {
-      return null;
+    public bool TryBeginOverwriteFile(string fileKey, string contentType, out string contentPushOtp) {
+      throw new NotImplementedException();
     }
 
-    public string RequestOtpForNewFileCreation(Dictionary<string, string> attributeValues) {
-      return null;
+    public bool TryBeginAppendFileContent(string fileKey, out string contentPushOtp) {
+      throw new NotImplementedException();
     }
 
-    public Stream DownloadFileContent(string otp, out string fileName, out string fileContentType) {
-      fileName = "dummy";
-      fileContentType = "dummy";
-      return null;
+    public bool TryBeginPullFileContent(
+      string fileKey, out string contentType, out long contentSizeBytes, out string contentPullOtp
+    ) {
+
+      throw new NotImplementedException();
     }
 
-    public string CreateNewFile(string otp, Stream file, string fileContentType) {
-      return null;
+    public void ContentOperationComplete(string contentPushOrPullOtp) {
+
     }
 
-    public bool TryOverwriteFile(string otp, Stream file, string fileContentType){
-      return false;
+    public bool TryPushFileContent(ref string contentPushOtp, byte[] content, bool willContinuePush) {
+      throw new NotImplementedException();
+    }
+
+    public bool TryPullFileContent(
+      ref string contentPullOtp, out byte[] content, bool willContinuePull, long byteOffset, long byteCount
+    ) {
+
+      throw new NotImplementedException();
     }
 
     public bool TryDeleteFile(string fileKey) {
