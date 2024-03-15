@@ -6,7 +6,13 @@ This files contains a version history including all changes relevant for semanti
 
 ## Upcoming Changes
 
-* **new Feature**: Added 'AfsAttributeType.ObjectGraph' and 'AfsAttributeDescriptor.SchemaDefinition'
+*(none)*
+
+
+
+## v 2.1.0
+released **2024-03-15**, including:
+ - **new Feature**: Added 'AfsAttributeType.ObjectGraph' and 'AfsAttributeDescriptor.SchemaDefinition'
 
 
 
