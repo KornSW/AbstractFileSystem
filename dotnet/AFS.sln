@@ -64,6 +64,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "targets", "targets", "{93EE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{078E66FD-E74B-4357-B910-73B4E3EECF2F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{A4B6951A-F5B6-41F1-B3C6-013BDA33870D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

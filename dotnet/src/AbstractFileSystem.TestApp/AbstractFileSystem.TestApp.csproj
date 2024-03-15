@@ -31,7 +31,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="UJMW.DynamicClient" Version="1.2.1" />
+    <PackageReference Include="UJMW.DynamicClient" Version="1.5.0" />
   </ItemGroup>
 
   <ItemGroup>

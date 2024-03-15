@@ -5,11 +5,15 @@ namespace System.IO.Abstraction {
   public interface IAfsRepository {
 
     /// <summary>
-    /// Get an string, representing the "Identity" of the current origin.
+    /// Returns an string, representing the "Identity" of the current origin.
     /// This can be used to discriminate multiple source repos (for usecases like caching)
     /// </summary>
     string GetOriginIdentity();
 
+    /// <summary>
+    /// Returns an property bag which holds information about the implemented/supported capabilities of this IAfsRepository.
+    /// </summary>
+    /// <returns></returns>
     AfsRepositoryCapabilities GetCapabilities();
 
     /// <summary>
@@ -59,7 +63,7 @@ namespace System.IO.Abstraction {
     /// <param name="limit"></param>
     /// <param name="skip"></param>
     /// <returns></returns>
-    string[] ListAllFiles(string sortingAttributeName, int limit, int skip);
+    string[] ListAllFiles(string sortingAttributeName, int limit = 100, int skip = 0);
 
     /// <summary>
     /// Searches files by given attribute values to be used as filter,
@@ -75,7 +79,7 @@ namespace System.IO.Abstraction {
     /// <param name="limit"></param>
     /// <param name="skip"></param>
     /// <returns></returns>
-    string[] SearchFilesByAttribute(Dictionary<string, string> attributesToFilter, string sortingAttributeName, int limit, int skip);
+    string[] SearchFilesByAttribute(Dictionary<string, string> attributesToFilter, string sortingAttributeName, int limit = 100, int skip = 0);
 
     /// <summary>
     /// Searches files by a given text/word that should be present within the content,
@@ -92,7 +96,7 @@ namespace System.IO.Abstraction {
     /// <param name="sortingAttributeName">can contain the prefix ^ for desc-order</param>
     /// <param name="limit"></param>
     /// <param name="skip"></param>
-    string[] SearchFilesByContent(string textWithinContent, Dictionary<string, string> attributesToFilter, string sortingAttributeName, int limit, int skip);
+    string[] SearchFilesByContent(string textWithinContent, Dictionary<string, string> attributesToFilter, string sortingAttributeName, int limit = 100, int skip = 0);
 
     /// <summary>
     /// returns a list of entries (one per file), containing a given set of attributes.

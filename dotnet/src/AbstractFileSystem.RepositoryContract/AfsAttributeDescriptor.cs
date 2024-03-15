@@ -18,6 +18,17 @@ namespace System.IO.Abstraction {
     /// </summary>
     public bool IsManagedValueRange { get; set; } = false;
 
+    /// <summary>
+    /// If provided, then values for this attribute are required
+    /// to be compliant to this schema.
+    /// For AfsAttributeType.ObjectGraph, this would be an 'FUSE-fx.ModelDescription'.
+    /// For all other string-based attribute types (AfsAttributeType.String|.AreaPath|...)
+    /// this would be an RegEx-Expression.
+    /// For numeric attributes this can be a an expression like '-100;100;2' to
+    /// declare that the number should be within -100 to 100 and has a decimal precition of 2
+    /// </summary>
+    public string SchemaDefinition { get; set; } = null;
+
   }
 
 }

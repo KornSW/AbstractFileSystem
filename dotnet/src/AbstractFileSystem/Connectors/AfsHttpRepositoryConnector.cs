@@ -12,7 +12,7 @@ namespace System.IO.Abstraction {
   public class AfsHttpRepositoryConnector : AfsCachingPipe {
 
     public AfsHttpRepositoryConnector(string endpointUrl, string httpAuthHeader = null, long cacheSizeBytes = 0) : base(
-      DynamicClientFactory.CreateInstance<IAfsRepository>(endpointUrl, () => httpAuthHeader),
+      DynamicClientFactory.CreateInstance<IAfsRepository>(endpointUrl, httpAuthHeader),
       BuildIdentityRelatedCacheDir(endpointUrl),
       cacheSizeBytes
     ) {
