@@ -8,8 +8,14 @@ This files contains a version history including all changes relevant for semanti
 
 *(none)*
 
- - Updated UJMW to 4.0.1 
+
+
+## v 2.1.1
+released **2025-01-16**, including:
  - removed upper-bound major version constraints for peer dependencies
+ - Updated UJMW to 4.0.1
+
+
 
 ## v 2.1.0
 released **2024-03-15**, including:
