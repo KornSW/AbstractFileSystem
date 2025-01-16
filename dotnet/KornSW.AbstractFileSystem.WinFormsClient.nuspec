@@ -17,11 +17,11 @@
     <dependencies>
       <group targetFramework=".NETFramework4.6">
         <dependency id="KornSW.AbstractFileSystem.RepositoryContract" version="[999.0.0,999.999]" />
-        <dependency id="Newtonsoft.Json" version="[13.0.3,13.999]" />
+        <dependency id="Newtonsoft.Json" version="13.0.3" />
       </group>
       <group targetFramework="net6.0">
         <dependency id="KornSW.AbstractFileSystem.RepositoryContract" version="[999.0.0,999.999]" />
-        <dependency id="Newtonsoft.Json" version="[13.0.3,13.999]" />
+        <dependency id="Newtonsoft.Json" version="13.0.3" />
       </group>
     </dependencies>
   </metadata>

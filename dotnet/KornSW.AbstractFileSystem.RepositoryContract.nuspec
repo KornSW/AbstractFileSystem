@@ -16,10 +16,10 @@
     <projectUrl>https://github.com/KornSW/AbstractFileSystem</projectUrl>
     <dependencies>
       <group targetFramework=".NETFramework4.6">
-        <dependency id="Newtonsoft.Json" version="[13.0.3,13.999]" />
+        <dependency id="Newtonsoft.Json" version="13.0.3" />
       </group>
       <group targetFramework="net6.0">
-        <dependency id="Newtonsoft.Json" version="[13.0.3,13.999]" />
+        <dependency id="Newtonsoft.Json" version="13.0.3" />
       </group>
     </dependencies>
   </metadata>

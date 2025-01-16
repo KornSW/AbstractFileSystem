@@ -64,8 +64,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "targets", "targets", "{93EE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{078E66FD-E74B-4357-B910-73B4E3EECF2F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{A4B6951A-F5B6-41F1-B3C6-013BDA33870D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -275,7 +273,6 @@ Global
 		src\AbstractFileSystem.MvcSupport\AbstractFileSystem.MvcSupport.projitems*{cf0a161a-99ba-4f01-af5e-16c6fcbc95ae}*SharedItemsImports = 13
 		src\AbstractFileSystem.DbStore\AbstractFileSystem.DbStore.projitems*{cf0a161a-99ba-4f01-af5f-16c6fcbc95ae}*SharedItemsImports = 13
 		test\AbstractFileSystem.Tests\AbstractFileSystem.Tests.projitems*{d0b8734c-340f-4b2a-80ee-c00afdd59e13}*SharedItemsImports = 4
-		src\AbstractFileSystem.WinFormsClient\AbstractFileSystem.WinFormsClient.projitems*{dcdc3890-1e78-43e6-8ecd-ea77458bddce}*SharedItemsImports = 4
 		src\AbstractFileSystem.RepositoryContract\AbstractFileSystem.RepositoryContract.projitems*{e0bd4a6f-e54e-42d3-a483-05f81472ca39}*SharedItemsImports = 13
 		src\AbstractFileSystem.RepositoryContract\AbstractFileSystem.RepositoryContract.projitems*{ea7c2c8a-1c5c-4b37-9ac8-14dcf5d3cf48}*SharedItemsImports = 4
 	EndGlobalSection

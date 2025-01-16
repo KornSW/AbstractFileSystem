@@ -8,12 +8,12 @@ This files contains a version history including all changes relevant for semanti
 
 *(none)*
 
-
+ - Updated UJMW to 4.0.1 
+ - removed upper-bound major version constraints for peer dependencies
 
 ## v 2.1.0
 released **2024-03-15**, including:
  - **new Feature**: Added 'AfsAttributeType.ObjectGraph' and 'AfsAttributeDescriptor.SchemaDefinition'
-
 
 
 ## v 2.0.0
