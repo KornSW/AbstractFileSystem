@@ -1,13 +1,13 @@
 {
-  "currentVersion": "2.1.1",
-  "currentVersionWithSuffix": "2.1.1",
-  "releaseType": "official",
-  "previousVersion": "2.1.0",
-  "changeGrade": "patch",
+  "currentVersion": "2.1.2",
+  "currentVersionWithSuffix": "2.1.2",
+  "releaseType": "",
+  "previousVersion": "2.1.1",
+  "changeGrade": "fix",
   "currentMajor": 2,
   "currentMinor": 1,
-  "currentPatch": 1,
-  "versionDateInfo": "2025-01-16",
-  "versionTimeInfo": "07:27:24",
-  "versionNotes": "- removed upper-bound major version constraints for peer dependencies\n- Updated UJMW to 4.0.1\n"
+  "currentPatch": 2,
+  "versionDateInfo": "2025-02-26",
+  "versionTimeInfo": "11:17:57",
+  "versionNotes": "- Added Targets for .NET 4.8 and 8.0\n"
 }
