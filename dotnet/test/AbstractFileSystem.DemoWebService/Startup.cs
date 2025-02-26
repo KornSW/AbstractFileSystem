@@ -73,7 +73,12 @@ namespace Security {
       services.AddControllers();
 
       services.AddDynamicUjmwControllers(r => {
-        r.AddControllerFor<IAfsRepository>();
+        r.AddControllerFor<IAfsRepository>(
+          new DynamicUjmwControllerOptions {
+            EnableRequestSidechannel = false,
+            EnableResponseSidechannel = false
+          }
+        );
       });
 
       services.AddSwaggerGen(c => {
@@ -127,13 +132,13 @@ namespace Security {
         c.SwaggerDoc(
           "ApiV3",
           new OpenApiInfo {
-            Title = _ApiTitle + " - API",
+            Title = "AFS Repository API",
             Version = _ApiVersion.ToString(3),
             Description = "NOTE: This is not intended be a 'RESTful' api, as it is NOT located on the persistence layer and is therefore NOT focused on doing CRUD operations! This HTTP-based API uses a 'call-based' approach to known BL operations. IN-, OUT- and return-arguments are transmitted using request-/response- wrappers (see [UJMW](https://github.com/SmartStandards/UnifiedJsonMessageWrapper)), which are very lightweight and are a compromise for broad support and adaptability in REST-inspired technologies as well as soap-inspired technologies!",
             Contact = new OpenApiContact {
-              Name = "",
-              Email = "",
-              Url = new Uri("")
+              Name = "KornSW",
+              Email = "email@kornsw.de",
+              Url = new Uri("https://github.com/KornSW/AbstractFileSystem")
             },
           }
         );
@@ -176,7 +181,7 @@ namespace Security {
           c.DocumentTitle = _ApiTitle + " - OpenAPI Definition(s)";
 
           //represents the sorting in SwaggerUI combo-box
-          c.SwaggerEndpoint("schema/ApiV3.json", _ApiTitle + " - API v" + _ApiVersion.ToString(3));
+          c.SwaggerEndpoint("schema/ApiV3.json", "AFS Repository API v" + _ApiVersion.ToString(3));
 
           c.RoutePrefix = "docs";
 

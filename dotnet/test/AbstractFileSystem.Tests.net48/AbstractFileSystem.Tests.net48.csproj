@@ -80,9 +80,9 @@
       <Project>{06aea37f-6cc1-40d4-ad63-63da062e8967}</Project>
       <Name>AbstractFileSystem.Common.net48</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\AbstractFileSystem.RepositoryContract.net48\AbstractFileSystem.RepositoryContract.net48.csproj">
+    <ProjectReference Include="..\..\src\AbstractFileSystem.RepositoryContract.net461\AbstractFileSystem.RepositoryContract.net461.csproj">
       <Project>{ea7c2c8a-1c5c-4b37-9ac8-14dcf5d3cf48}</Project>
-      <Name>AbstractFileSystem.RepositoryContract.net48</Name>
+      <Name>AbstractFileSystem.RepositoryContract.net461</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\AbstractFileSystem.Tests\AbstractFileSystem.Tests.projitems" Label="Shared" />
