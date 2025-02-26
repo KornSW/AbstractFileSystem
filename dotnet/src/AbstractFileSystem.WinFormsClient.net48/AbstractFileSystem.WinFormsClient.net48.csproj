@@ -100,10 +100,6 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AbstractFileSystem.net461\AbstractFileSystem.Common.net461.csproj">
-      <Project>{b0ba06fe-6437-4b9e-8c76-3adfc8d191d2}</Project>
-      <Name>AbstractFileSystem.Common.net48</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AbstractFileSystem.RepositoryContract.net461\AbstractFileSystem.RepositoryContract.net461.csproj">
       <Project>{ea7c2c8a-1c5c-4b37-9ac8-14dcf5d3cf48}</Project>
       <Name>AbstractFileSystem.RepositoryContract.net48</Name>

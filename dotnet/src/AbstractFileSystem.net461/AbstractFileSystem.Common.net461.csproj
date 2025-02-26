@@ -136,7 +136,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UJMW.DynamicClient, Version=4.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="UJMW.DynamicClient">
       <HintPath>..\..\vendor\nuget\UJMW.DynamicClient.4.0.2\lib\net46\UJMW.DynamicClient.dll</HintPath>
     </Reference>
   </ItemGroup>

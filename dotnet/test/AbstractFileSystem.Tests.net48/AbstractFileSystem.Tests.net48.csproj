@@ -76,10 +76,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\AbstractFileSystem.net48\AbstractFileSystem.Common.net48.csproj">
-      <Project>{b0ba06fe-6437-4b9e-8c76-3adfc8d191d2}</Project>
-      <Name>AbstractFileSystem.Common.net48</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\AbstractFileSystem.RepositoryContract.net48\AbstractFileSystem.RepositoryContract.net48.csproj">
       <Project>{ea7c2c8a-1c5c-4b37-9ac8-14dcf5d3cf48}</Project>
       <Name>AbstractFileSystem.RepositoryContract.net48</Name>
