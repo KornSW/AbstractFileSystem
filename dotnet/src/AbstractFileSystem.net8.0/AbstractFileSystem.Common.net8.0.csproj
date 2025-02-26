@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>KornSW.AFS.Common</AssemblyName>
     <RootNamespace>System</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -21,16 +21,16 @@
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>..\..\dist\bin-net6.0\KornSW.AFS.Common.xml</DocumentationFile>
-    <OutputPath>..\..\dist\bin-net6.0\</OutputPath>
+    <DocumentationFile>..\..\dist\bin-net8.0\KornSW.AFS.Common.xml</DocumentationFile>
+    <OutputPath>..\..\dist\bin-net8.0\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <NoWarn>1701;1702;1591</NoWarn>
     <DefineConstants>TRACE;DEBUG;NET5</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\..\dist\bin-net6.0\</OutputPath>
-    <DocumentationFile>..\..\dist\bin-net6.0\KornSW.AFS.Common.xml</DocumentationFile>
+    <OutputPath>..\..\dist\bin-net8.0\</OutputPath>
+    <DocumentationFile>..\..\dist\bin-net8.0\KornSW.AFS.Common.xml</DocumentationFile>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <NoWarn>1701;1702;1591</NoWarn>
     <DefineConstants>TRACE;NET5</DefineConstants>
@@ -56,7 +56,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AbstractFileSystem.RepositoryContract.net6.0\AbstractFileSystem.RepositoryContract.net6.0.csproj" />
+    <ProjectReference Include="..\AbstractFileSystem.RepositoryContract.net8.0\AbstractFileSystem.RepositoryContract.net8.0.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,13 +64,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="C:\TKP\%28git%29\AbstractFileSystem\dotnet\src\AbstractFileSystem\%28import from GitHub%29\Minimatcher.tt">
+    <Content Update="..\AbstractFileSystem\%28import from GitHub%29\Minimatcher.tt">
       <LastGenOutput>Minimatcher.cs</LastGenOutput>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="C:\TKP\%28git%29\AbstractFileSystem\dotnet\src\AbstractFileSystem\%28import from GitHub%29\Minimatcher.tt">
+    <None Update="..\AbstractFileSystem\%28import from GitHub%29\Minimatcher.tt">
       <LastGenOutput>Minimatcher.cs</LastGenOutput>
     </None>
   </ItemGroup>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -10,10 +9,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace System.IO.Abstraction {
 
   [TestClass]
-  public class AfsTests {
+  public class AfsTests2 {
 
     [TestMethod]
-    public void AfsTest() {
+    public void AfsTest2() {
 
 
       IAfsRepository repo = new AfsLocalRepository("C:\\Temp");
@@ -24,33 +23,9 @@ namespace System.IO.Abstraction {
 
 
 
-
-
-      Assert.IsFalse(false); 
-
-
-
-
-
-
-
-
-
+      Assert.IsFalse(false);
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   }
 

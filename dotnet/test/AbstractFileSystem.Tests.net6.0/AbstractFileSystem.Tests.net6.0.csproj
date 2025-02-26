@@ -2,27 +2,29 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>Security</RootNamespace>
+    <RootNamespace>AFS</RootNamespace>
+    <IsTestProject>true</IsTestProject>
     <IsPackable>false</IsPackable>
     <AssemblyVersion>0.0.0.0</AssemblyVersion>
     <Version>0.0.0</Version>
     <AssemblyName>AbstractFileSystem.Tests</AssemblyName>
     <PackageId>Tests</PackageId>
     <Product>Tests</Product>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <Company />
     <Authors>Tests</Authors>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;1591</NoWarn>
-    <DefineConstants>DEBUG;TRACE;NET5</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;NETCORE</DefineConstants>
     <OutputPath>bin\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <NoWarn>1701;1702;1591</NoWarn>
-    <DefineConstants>TRACE;NET5</DefineConstants>
+    <DefineConstants>TRACE;NETCORE</DefineConstants>
     <OutputPath>bin\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
@@ -35,8 +37,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\AbstractFileSystem.net6.0\AbstractFileSystem.Common.net6.0.csproj" />
-    <ProjectReference Include="..\..\src\AbstractFileSystem.RepositoryContract.net6.0\AbstractFileSystem.RepositoryContract.net6.0.csproj" />
+    <ProjectReference Include="..\..\src\AbstractFileSystem.net6.0\AbstractFileSystem.Common.net6.0.csproj">
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\AbstractFileSystem.RepositoryContract.net6.0\AbstractFileSystem.RepositoryContract.net6.0.csproj">
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
 
   <Import Project="..\AbstractFileSystem.Tests\AbstractFileSystem.Tests.projitems" Label="Shared" />

@@ -17,11 +17,16 @@
       <dependencies>
         <group targetFramework="net6.0">
           <dependency id="KornSW.AbstractFileSystem.RepositoryContract" version="[999.0.0,999.999]" />
-          <dependency id="Newtonsoft.Json" version="[13.0.3,13.999]" />
           <dependency id="Microsoft.AspNetCore.Http" version="[2.2.2,2.999]" />
           <dependency id="Microsoft.AspNetCore.Mvc.Core" version="[2.2.2,2.999]" />
-          <dependency id="Newtonsoft.Json" version="[13.0.3,13.999]" />
+          <dependency id="Newtonsoft.Json" version="[13.0.3,14.0)" />
         </group>
+        <!--<group targetFramework="net8.0">
+          <dependency id="KornSW.AbstractFileSystem.RepositoryContract" version="[999.0.0,999.999]" />
+          <dependency id="Microsoft.AspNetCore.Http" version="[2.2.2,2.999]" />
+          <dependency id="Microsoft.AspNetCore.Mvc.Core" version="[2.2.2,2.999]" />
+          <dependency id="Newtonsoft.Json" version="[13.0.3,14.0)" />
+        </group>-->
       </dependencies>
   </metadata>
   <files>
@@ -31,5 +36,9 @@
     <file src="dist\bin-net6.0\KornSW.AFS.MvcSupport.dll" target="lib/net6.0" />
     <file src="dist\bin-net6.0\KornSW.AFS.MvcSupport.xml" target="lib/net6.0" />
     <file src="dist\bin-net6.0\KornSW.AFS.MvcSupport.pdb" target="lib/net6.0" />
+    <!-- .NET 8.0 -->
+    <!--<file src="dist\bin-net8.0\KornSW.AFS.MvcSupport.dll" target="lib/net8.0" />
+    <file src="dist\bin-net8.0\KornSW.AFS.MvcSupport.xml" target="lib/net8.0" />
+    <file src="dist\bin-net8.0\KornSW.AFS.MvcSupport.pdb" target="lib/net8.0" />-->  
   </files>
 </package>

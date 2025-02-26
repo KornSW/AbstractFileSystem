@@ -3,7 +3,7 @@ namespace System.IO.Abstraction {
 
   public enum AfsAttributeType {
 
-    /// <summary> just a simple string </summary>
+    /// <summary> just a simple string (single-line, WITHOUT linebreaks) </summary>
     String = 0,
 
     /// <summary> an Path which is always starting with (and can be separated by) FORWARD-slash-characters ('/')  </summary>
@@ -11,6 +11,12 @@ namespace System.IO.Abstraction {
 
     /// <summary> TagA;TagB;TagC </summary>
     SemicolonSeparadedTags = 2,
+
+    /// <summary>
+    /// a string that can contain linebreaks
+    /// (specifying a syntax like 'MarkDown' can be declarad using the 'SchemaDefinition' property)
+    /// </summary>
+    StringMultiline = 3,
 
     /// <summary> 
     /// a Number, which is an INTEGER in default.

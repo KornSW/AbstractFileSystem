@@ -2,17 +2,17 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <BaseOutputPath>..\..\dist\bin-net6.0</BaseOutputPath>
     <AssemblyName>KornSW.AFS.TestApp</AssemblyName>
     <Title>AuthTest</Title>
     <ApplicationIcon>appicon.ico</ApplicationIcon>
     <IsPublishable>False</IsPublishable>
-    <PackageId>AuthTest</PackageId>
-    <Authors>SmartStandards</Authors>
-    <Company>SmartStandards</Company>
-    <Product>AuthTokenHandling</Product>
+    <PackageId>KornSW.AFS.TestApp</PackageId>
+    <Authors>KornSW</Authors>
+    <Company>KornSW</Company>
+    <Product>AbstractFileSystem</Product>
     <Platforms>x64;x86</Platforms>
   </PropertyGroup>
 
@@ -31,13 +31,13 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="UJMW.DynamicClient" Version="1.5.0" />
+    <PackageReference Include="UJMW.DynamicClient" Version="4.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AbstractFileSystem.net6.0\AbstractFileSystem.Common.net6.0.csproj" />
-    <ProjectReference Include="..\AbstractFileSystem.RepositoryContract.net6.0\AbstractFileSystem.RepositoryContract.net6.0.csproj" />
-    <ProjectReference Include="..\AbstractFileSystem.WinFormsClient.net6.0\AbstractFileSystem.WinFormsClient.net6.0.csproj" />
+    <ProjectReference Include="..\AbstractFileSystem.net8.0\AbstractFileSystem.Common.net8.0.csproj" />
+    <ProjectReference Include="..\AbstractFileSystem.RepositoryContract.net8.0\AbstractFileSystem.RepositoryContract.net8.0.csproj" />
+    <ProjectReference Include="..\AbstractFileSystem.WinFormsClient.net8.0\AbstractFileSystem.WinFormsClient.net8.0.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -68,7 +68,7 @@
   </ItemGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutputPath>..\..\dist\bin-net6.0\</OutputPath>
+    <OutputPath>..\..\dist\bin-net8.0\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <NoWarn>1701;1702;1591</NoWarn>
     <DefineConstants>TRACE;DEBUG;NET5</DefineConstants>
@@ -76,7 +76,7 @@
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <OutputPath>..\..\dist\bin-net6.0\</OutputPath>
+    <OutputPath>..\..\dist\bin-net8.0\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <NoWarn>1701;1702;1591</NoWarn>
     <DefineConstants>TRACE;DEBUG;NET5</DefineConstants>
@@ -84,7 +84,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutputPath>..\..\dist\bin-net6.0\</OutputPath>
+    <OutputPath>..\..\dist\bin-net8.0\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <NoWarn>1701;1702;1591</NoWarn>
     <DefineConstants>TRACE;NET5</DefineConstants>
@@ -92,7 +92,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <OutputPath>..\..\dist\bin-net6.0\</OutputPath>
+    <OutputPath>..\..\dist\bin-net8.0\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <NoWarn>1701;1702;1591</NoWarn>
     <DefineConstants>TRACE;NET5</DefineConstants>

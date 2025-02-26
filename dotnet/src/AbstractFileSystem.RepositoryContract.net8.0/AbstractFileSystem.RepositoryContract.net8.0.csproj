@@ -1,16 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <AssemblyName>KornSW.AFS.MvcSupport</AssemblyName>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>KornSW.AFS.RepositoryContract</AssemblyName>
     <RootNamespace>System</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   
   <PropertyGroup>
-    <PackageId>SmartStandards.AuthTokenHandling.MvcSupport</PackageId>
-    <Description>AbstractFileSystem.MvcSupport</Description>
-    <Product>AbstractFileSystem.MvcSupport</Product>
+    <PackageId>KornSW.AFS.RepositoryContract</PackageId>
+    <Description>RepositoryContract</Description>
+    <Product>RepositoryContract</Product>
     <Company>(public domain)</Company>
     <Copyright>KornSW</Copyright>
     <Version>1.0.0</Version>
@@ -21,31 +21,25 @@
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>..\..\dist\bin-net6.0\KornSW.AFS.MvcSupport.xml</DocumentationFile>
-    <OutputPath>..\..\dist\bin-net6.0\</OutputPath>
+    <DocumentationFile>..\..\dist\bin-net8.0\KornSW.AFS.RepositoryContract.xml</DocumentationFile>
+    <OutputPath>..\..\dist\bin-net8.0\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <NoWarn>1701;1702;1591</NoWarn>
     <DefineConstants>TRACE;DEBUG;NET5</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\..\dist\bin-net6.0\</OutputPath>
-    <DocumentationFile>..\..\dist\bin-net6.0\KornSW.AFS.MvcSupport.xml</DocumentationFile>
+    <OutputPath>..\..\dist\bin-net8.0\</OutputPath>
+    <DocumentationFile>..\..\dist\bin-net8.0\KornSW.AFS.RepositoryContract.xml</DocumentationFile>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <NoWarn>1701;1702;1591</NoWarn>
     <DefineConstants>TRACE;NET5</DefineConstants>
   </PropertyGroup>
 
-  <Import Project="..\AbstractFileSystem.MvcSupport\AbstractFileSystem.MvcSupport.projitems" Label="Shared" />
+  <Import Project="..\AbstractFileSystem.RepositoryContract\AbstractFileSystem.RepositoryContract.projitems" Label="Shared" />
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\AbstractFileSystem.net6.0\AbstractFileSystem.Common.net6.0.csproj" />
-    <ProjectReference Include="..\AbstractFileSystem.RepositoryContract.net6.0\AbstractFileSystem.RepositoryContract.net6.0.csproj" />
   </ItemGroup>
 
 </Project>

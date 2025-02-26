@@ -62,36 +62,12 @@ namespace System.IO.Abstraction {
 
     public AfsAttributeDescriptor[] GetAvailableAttributes() {
       return new AfsAttributeDescriptor[] {
-        new AfsAttributeDescriptor {
-          AttributeName = AfsWellknownAttributeNames.FileFullName,
-          AttributeType = AfsAttributeType.String,
-          IsManagedValueRange = false, RequiredOnCreation = false, Updatable = false,
-        },
-        new AfsAttributeDescriptor {
-          AttributeName = AfsWellknownAttributeNames.FileName,
-          AttributeType = AfsAttributeType.String,
-          IsManagedValueRange = true, RequiredOnCreation = true, Updatable = true,
-        },
-        new AfsAttributeDescriptor {
-          AttributeName = AfsWellknownAttributeNames.Directory,
-          AttributeType = AfsAttributeType.AreaPath,
-          IsManagedValueRange = true, RequiredOnCreation = true, Updatable = true,
-        },
-        new AfsAttributeDescriptor {
-          AttributeName = AfsWellknownAttributeNames.FileSizeBytes,
-          AttributeType = AfsAttributeType.Number,
-          IsManagedValueRange = false, RequiredOnCreation = false, Updatable = false,
-        },
-        new AfsAttributeDescriptor {
-          AttributeName = AfsWellknownAttributeNames.TimeOfCreation,
-          AttributeType = AfsAttributeType.ISODateTime,
-          IsManagedValueRange = false, RequiredOnCreation = false, Updatable = false,
-        },
-        new AfsAttributeDescriptor {
-          AttributeName = AfsWellknownAttributeNames.TimeOfLastWrite,
-          AttributeType = AfsAttributeType.ISODateTime,
-          IsManagedValueRange = false, RequiredOnCreation = false, Updatable = false,
-        }
+        AfsWellknownAttributes.FileFullName(),
+        AfsWellknownAttributes.FileName(updatable: true),
+        AfsWellknownAttributes.Directory(updatable: true),
+        AfsWellknownAttributes.FileSizeBytes(),
+        AfsWellknownAttributes.TimeOfCreation(),
+        AfsWellknownAttributes.TimeOfLastWrite()
       };
     }
 

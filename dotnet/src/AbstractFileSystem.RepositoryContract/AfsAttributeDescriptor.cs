@@ -22,6 +22,7 @@ namespace System.IO.Abstraction {
     /// If provided, then values for this attribute are required
     /// to be compliant to this schema.
     /// For AfsAttributeType.ObjectGraph, this would be an 'FUSE-fx.ModelDescription'.
+    /// For AfsAttributeType.StringMultiline, this would be 'plain'(default)|'md'(=MarkDown)|'html'.
     /// For all other string-based attribute types (AfsAttributeType.String|.AreaPath|...)
     /// this would be an RegEx-Expression.
     /// For numeric attributes this can be a an expression like '-100;100;2' to
