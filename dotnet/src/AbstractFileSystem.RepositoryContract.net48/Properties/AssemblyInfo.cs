@@ -3,9 +3,9 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("AuthTokenHandling")]
-[assembly: AssemblyDescription("AuthTokenHandling")]
-[assembly: AssemblyProduct("AuthTokenHandling")]
+[assembly: AssemblyTitle("AbstractFileSystem.RepositoryContract")]
+[assembly: AssemblyDescription("AbstractFileSystem.RepositoryContract")]
+[assembly: AssemblyProduct("AbstractFileSystem")]
 
 [assembly: AssemblyCompany("(public domain)")]
 [assembly: AssemblyCopyright("SmartStandards")]

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\TKP\(git)\AbstractFileSystem\dotnet\src\AbstractFileSystem.DbStore.Edmx\DataModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\GIT\KornSW\(KornSW) AbstractFileSystem\dotnet\src\AbstractFileSystem.DbStore.Edmx\DataModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

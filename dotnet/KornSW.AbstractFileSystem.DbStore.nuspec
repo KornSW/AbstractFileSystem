@@ -25,7 +25,7 @@
         <dependency id="Microsoft.EntityFrameworkCore.Tools" version="6.0.26" />
         <dependency id="Newtonsoft.Json" version="[13.0.3,14.0)" />
       </group>
-      <!--<group targetFramework="net8.0">
+      <group targetFramework="net8.0">
         <dependency id="KornSW.AbstractFileSystem.RepositoryContract" version="[999.0.0,999.999]" />
         <dependency id="FUSE-fx.EntityAnnotations" version="4.0.3" />
         <dependency id="Microsoft.EntityFrameworkCore" version="6.0.26" />
@@ -34,7 +34,7 @@
         <dependency id="Microsoft.EntityFrameworkCore.SqlServer" version="6.0.26" />
         <dependency id="Microsoft.EntityFrameworkCore.Tools" version="6.0.26" />
         <dependency id="Newtonsoft.Json" version="[13.0.3,14.0)" />
-      </group>-->     
+      </group>     
     </dependencies>
   </metadata>
   <files>
@@ -45,8 +45,8 @@
     <file src="dist\bin-net6.0\KornSW.AFS.DbStore.xml" target="lib/net6.0" />
     <file src="dist\bin-net6.0\KornSW.AFS.DbStore.pdb" target="lib/net6.0" />
     <!-- .NET 8.0 -->
-    <!--<file src="dist\bin-net8.0\KornSW.AFS.DbStore.dll" target="lib/net8.0" />
+    <file src="dist\bin-net8.0\KornSW.AFS.DbStore.dll" target="lib/net8.0" />
     <file src="dist\bin-net8.0\KornSW.AFS.DbStore.xml" target="lib/net8.0" />
-    <file src="dist\bin-net8.0\KornSW.AFS.DbStore.pdb" target="lib/net8.0" />-->
+    <file src="dist\bin-net8.0\KornSW.AFS.DbStore.pdb" target="lib/net8.0" />
   </files>
 </package>

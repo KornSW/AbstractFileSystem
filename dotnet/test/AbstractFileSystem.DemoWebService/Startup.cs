@@ -25,6 +25,7 @@ using System.Web.UJMW;
 using Microsoft.AspNetCore.Authorization;
 using System.Net.Http;
 using System.IO.Abstraction;
+using Microsoft.AspNetCore.AfsSupport;
 
 namespace Security {
 
@@ -195,6 +196,11 @@ namespace Security {
       app.UseHttpsRedirection();
 
       app.UseRouting();
+
+      IAfsRepository staticFiles = new AfsEmbeddedFileRepository(
+        "/"//Assembly.GetExecutingAssembly(), "namepsace", "/"
+      );
+      app.HostFilesFromAfsRepository(staticFiles, "/");
 
       //CORS: muss zwischen 'UseRouting' und 'UseEndpoints' liegen!
       app.UseCors(p =>

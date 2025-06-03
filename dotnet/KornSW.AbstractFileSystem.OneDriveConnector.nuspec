@@ -20,11 +20,11 @@
         <dependency id="Newtonsoft.Json" version="[13.0.3,14.0)" />
         <dependency id="UJMW.DynamicClient" version="4.0.2" />
       </group>
-      <!--<group targetFramework="net8.0">
+      <group targetFramework="net8.0">
         <dependency id="KornSW.AbstractFileSystem.RepositoryContract" version="[999.0.0,999.999]" />
         <dependency id="Newtonsoft.Json" version="[13.0.3,14.0)" />
         <dependency id="UJMW.DynamicClient" version="4.0.2" />
-      </group>-->
+      </group>
     </dependencies>
   </metadata>
   <files>
@@ -35,8 +35,8 @@
     <file src="dist\bin-net6.0\KornSW.AFS.OneDriveConnector.xml" target="lib/net6.0" />
     <file src="dist\bin-net6.0\KornSW.AFS.OneDriveConnector.pdb" target="lib/net6.0" />
     <!-- .NET 8.0 -->
-    <!--<file src="dist\bin-net8.0\KornSW.AFS.OneDriveConnector.dll" target="lib/net8.0" />
+    <file src="dist\bin-net8.0\KornSW.AFS.OneDriveConnector.dll" target="lib/net8.0" />
     <file src="dist\bin-net8.0\KornSW.AFS.OneDriveConnector.xml" target="lib/net8.0" />
-    <file src="dist\bin-net8.0\KornSW.AFS.OneDriveConnector.pdb" target="lib/net8.0" />-->      
+    <file src="dist\bin-net8.0\KornSW.AFS.OneDriveConnector.pdb" target="lib/net8.0" />      
   </files>
 </package>

@@ -9,6 +9,8 @@
     <Import_RootNamespace>System</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AfsMvcHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MsFileProviderForAfsRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)_SAMPLE_ModuleBundleFileProvider.cs" />
+    <Compile Include="..\AbstractFileSystem.MvcSupport\AfsTreeHostingSetupExtensions.cs" />
   </ItemGroup>
 </Project>

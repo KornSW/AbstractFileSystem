@@ -136,8 +136,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UJMW.DynamicClient, Version=4.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\vendor\nuget\UJMW.DynamicClient.4.0.2\lib\net46\UJMW.DynamicClient.dll</HintPath>
+    <Reference Include="UJMW.DynamicClient, Version=4.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\vendor\nuget\UJMW.DynamicClient.4.1.4\lib\net48\UJMW.DynamicClient.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -148,9 +148,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AbstractFileSystem.RepositoryContract.net461\AbstractFileSystem.RepositoryContract.net461.csproj">
-      <Project>{ea7c2c8a-1c5c-4b37-9ac8-14dcf5d3cf48}</Project>
-      <Name>AbstractFileSystem.RepositoryContract.net461</Name>
+    <ProjectReference Include="..\AbstractFileSystem.RepositoryContract.net48\AbstractFileSystem.RepositoryContract.net48.csproj">
+      <Project>{725de55e-0de0-462d-99eb-27b6a923e192}</Project>
+      <Name>AbstractFileSystem.RepositoryContract.net48</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\AbstractFileSystem\AbstractFileSystem.Common.projitems" Label="Shared" />
