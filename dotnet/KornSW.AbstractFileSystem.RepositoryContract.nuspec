@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>KornSW.AbstractFileSystem.RepositoryContract</id>
-    <version>999.0.2-localbuild</version>
+    <version>2.2.0</version>
     <title>AbstractFileSystem - Repository Contract</title>
     <authors>KornSW</authors>
     <owners>(public domain)</owners>

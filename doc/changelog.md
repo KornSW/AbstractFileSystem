@@ -6,7 +6,13 @@ This files contains a version history including all changes relevant for semanti
 
 ## Upcoming Changes
 
-* **new Feature**: Removed .NET 46 and enabled .NET 8
+*(none)*
+
+
+
+## v 2.2.0
+released **2025-06-03**, including:
+ - **new Feature**: Removed .NET 46 and enabled .NET 8
 
 
 
